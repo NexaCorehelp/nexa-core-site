@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>NexaCore • Orders</title>
+  <link rel="icon" href="assets/favicon.ico">
+  <link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+  <header class="header-band">
+    <div class="container">
+      <nav class="nav">
+        <a class="brand" href="index.html"><img src="assets/logo.png" alt=""><span>NexaCore</span></a>
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="bots.html">Bots</a></li>
+          <li><a href="hosting.html">Hosting</a></li>
+          <li><a href="orders.html" class="active">Orders</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <section class="hero container">
+    <h1>Start an Order</h1>
+    <p>Tell us what you need. We will review and reply on Discord.</p>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <form class="form" action="https://formspree.io/f/mvgvpgwy" method="POST">
+        <input class="input" type="text" name="name" placeholder="Your name" required>
+        <input class="input" type="email" name="email" placeholder="Email" required>
+        <input class="input" type="text" name="discord" placeholder="Discord username (e.g. user#1234)" required>
+        <select class="select" name="service" required>
+          <option value="">Select a service</option>
+          <option>Custom Discord Bot</option>
+          <option>ER:LC NexaPatch Integration</option>
+          <option>Bot Hosting</option>
+          <option>Other</option>
+        </select>
+        <textarea class="textarea" name="details" rows="6" placeholder="Describe your request" required></textarea>
+        <button class="button" type="submit">Submit</button>
+      </form>
+      <div class="spacer"></div>
+      <p class="center small">Prefer Discord. Order in our server: <a class="cta" href="https://discord.gg/UTRsR7U3Tz">Join here</a></p>
+    </div>
+  </section>
+
+  <footer>
+    <div class="container footer-inner">
+      <div>© <span id="year"></span> NexaCore. All rights reserved.</div>
+      <div class="footer-links"><a href="privacy.html">Privacy</a><a href="tos.html">Terms</a></div>
+    </div>
+    <script>document.getElementById('year').textContent=new Date().getFullYear()</script>
+  </footer>
+</body>
+</html>
