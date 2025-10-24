@@ -1,28 +1,75 @@
 <!doctype html>
 <html lang="en">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width,initial-scale=1">
-  <title>NexaCore</title>
-  <style>
-    html,body{height:100%;margin:0}
-    body{
-      display:grid;place-items:center;text-align:center;
-      font-family: system-ui, Arial, sans-serif;color:#fff;
-      background: linear-gradient(135deg,#8222B6,#DD310A);
-    }
-    .box{max-width:720px;padding:24px}
-    h1{margin:0 0 10px;font-size:44px}
-    p{margin:6px 0 14px;font-size:18px;opacity:.95}
-    a{display:inline-block;padding:12px 18px;border-radius:10px;
-      background: rgba(255,255,255,.15);color:#fff;text-decoration:none}
-  </style>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>NexaCore • Home</title>
+  <link rel="icon" href="assets/favicon.ico">
+  <link rel="stylesheet" href="assets/style.css">
 </head>
 <body>
-  <div class="box">
-    <h1>NexaCore</h1>
-    <p>Custom Discord bots, ER:LC integrations, and global hosting.</p>
-    <a href="https://discord.gg/UTRsR7U3Tz">Join our Discord</a>
-  </div>
+
+  <!-- Header -->
+  <header class="header-band">
+    <div class="container">
+      <nav class="nav">
+        <a class="brand" href="index.html">
+          <img src="assets/logo.png" alt="NexaCore logo">
+          <span>NexaCore</span>
+        </a>
+        <ul>
+          <li><a href="index.html" class="active">Home</a></li>
+          <li><a href="bots.html">Bots</a></li>
+          <li><a href="hosting.html">Hosting</a></li>
+          <li><a href="orders.html">Orders</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Hero -->
+  <section class="hero container">
+    <h1>Reliable. Scalable. Professional.</h1>
+    <p>Custom Discord bots, ER:LC integrations with NexaPatch, and global bot hosting. Built for communities that need power and simplicity.</p>
+    <a class="cta" href="orders.html">Start an Order</a>
+  </section>
+
+  <!-- Services -->
+  <section class="section">
+    <div class="container">
+      <div class="cards">
+        <div class="card">
+          <h3>Discord Bots</h3>
+          <p>Moderation, automations, leveling, tickets, anti-raid, and custom features tailored to your server.</p>
+        </div>
+        <div class="card">
+          <h3>NexaPatch (ER:LC)</h3>
+          <p>ER:LC integrations that connect in-game events to Discord with alerting and control.</p>
+        </div>
+        <div class="card">
+          <h3>Hosting</h3>
+          <p>Global locations, four plans, stable performance. Managed and monitored.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="hero container">
+    <p class="small">Owners: Carrkaiden1212 and Void</p>
+    <a class="cta" href="https://discord.gg/UTRsR7U3Tz">Join our Discord</a>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <div class="container footer-inner">
+      <div>© <span id="year"></span> NexaCore. All rights reserved.</div>
+      <div class="footer-links">
+        <a href="privacy.html">Privacy</a>
+        <a href="tos.html">Terms</a>
+      </div>
+    </div>
+    <script>document.getElementById('year').textContent=new Date().getFullYear()</script>
+  </footer>
 </body>
 </html>
