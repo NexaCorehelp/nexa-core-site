@@ -2,7 +2,10 @@ import fetch from 'node-fetch';
 
 export default async function handler(req, res) {
   const code = req.query.code;
-  if (!code) return res.status(400).send('No code provided');
+  if (!code) {
+    res.status(400).send('No code provided');
+    return;
+  }
 
   const CLIENT_ID = process.env.DISCORD_CLIENT_ID;
   const CLIENT_SECRET = process.env.DISCORD_CLIENT_SECRET;
@@ -22,7 +25,10 @@ export default async function handler(req, res) {
     })
   });
   const tokenData = await tokenRes.json();
-  if (!tokenData.access_token) return res.status(400).send('Failed to get access token');
+  if (!tokenData.access_token) {
+    res.status(400).send('Failed to get access token');
+    return;
+  }
 
   // Fetch user info
   const userRes = await fetch('https://discord.com/api/users/@me', {
