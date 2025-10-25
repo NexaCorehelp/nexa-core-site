@@ -36,10 +36,12 @@ export default async function handler(req, res) {
   });
   const userData = await userRes.json();
 
-  res.status(200).json({
+  // Redirect to home page with user info as query params
+  const params = new URLSearchParams({
     username: userData.username,
     email: userData.email,
     avatar: userData.avatar,
     id: userData.id
-  });
+  }).toString();
+  res.redirect(`/?${params}`);
 }
