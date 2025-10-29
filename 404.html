@@ -1,8 +1,8 @@
-<!doctype html>
+﻿<!doctype html>
 <html lang="en">
 <head>
   <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-  <title>404 • NexaCore</title>
+  <title>NexaCore &bull; 404</title>
   <link rel="icon" href="assets/favicon.ico">
   <link rel="stylesheet" href="/assets/style.css">
 </head>
@@ -10,7 +10,114 @@
   <section class="hero container">
     <h1>404</h1>
     <p>Page not found</p>
-    <a class="cta" href="index.html">Back to Home</a>
+  <a class="cta" href="/">Back to Home</a>
   </section>
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    const btn = document.getElementById('account-btn');
+    const popup = document.getElementById('account-popup');
+    const backdrop = document.getElementById('account-backdrop');
+    const closeBtn = document.querySelector('#account-popup .popup-close');
+    const themeSelect = document.getElementById('theme-select');
+    const accessSelect = document.getElementById('access-select');
+
+    const savedTheme = localStorage.getItem('theme');
+    const savedAccess = localStorage.getItem('access');
+    const prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+    const prefersHighContrast = window.matchMedia && window.matchMedia('(prefers-contrast: more)').matches;
+    const theme = savedTheme || (prefersDark ? 'dark' : 'light');
+    const access = savedAccess || (prefersHighContrast ? 'high-contrast' : 'default');
+    document.body.setAttribute('data-theme', theme);
+    document.body.setAttribute('data-access', access);
+    if (themeSelect) themeSelect.value = theme;
+    if (accessSelect) accessSelect.value = access;
+
+    themeSelect.addEventListener('change', (e) => {
+      const v = e.target.value;
+      document.body.setAttribute('data-theme', v);
+      localStorage.setItem('theme', v);
+    });
+    accessSelect.addEventListener('change', (e) => {
+      const v = e.target.value;
+      document.body.setAttribute('data-access', v);
+      localStorage.setItem('access', v);
+    });
+
+    let lastFocused = null;
+    const getFocusable = () => popup.querySelectorAll('a, button, input, select, textarea, [tabindex]:not([tabindex="-1"])');
+    const openPopup = () => {
+      lastFocused = document.activeElement;
+      backdrop.hidden = false;
+      popup.hidden = false;
+      requestAnimationFrame(() => {
+        popup.classList.add('is-open');
+        backdrop.classList.add('is-open');
+        btn.setAttribute('aria-expanded', 'true');
+        const focusables = getFocusable();
+        if (focusables.length) focusables[0].focus();
+      });
+    };
+    const closePopup = () => {
+      popup.classList.remove('is-open');
+      backdrop.classList.remove('is-open');
+      btn.setAttribute('aria-expanded', 'false');
+      const finish = () => {
+        popup.hidden = true;
+        backdrop.hidden = true;
+        if (lastFocused) lastFocused.focus();
+        popup.removeEventListener('transitionend', finish);
+      };
+      popup.addEventListener('transitionend', finish);
+      setTimeout(finish, 150);
+    };
+
+    if (btn) btn.addEventListener('click', () => { if (popup.hidden) openPopup(); else closePopup(); });
+    if (closeBtn) closeBtn.addEventListener('click', closePopup);
+    if (backdrop) backdrop.addEventListener('click', closePopup);
+
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && popup && !popup.hidden) {
+        e.preventDefault();
+        closePopup();
+      } else if (e.key === 'Tab' && popup && !popup.hidden) {
+        const focusables = Array.from(getFocusable());
+        if (!focusables.length) return;
+        const first = focusables[0];
+        const last = focusables[focusables.length - 1];
+        if (e.shiftKey && document.activeElement === first) {
+          e.preventDefault(); last.focus();
+        } else if (!e.shiftKey && document.activeElement === last) {
+          e.preventDefault(); first.focus();
+        }
+      }
+    });
+
+    function getQueryParams() {
+      const params = {};
+      const q = window.location.search.replace(/^\?/, '');
+      if (!q) return params;
+      q.split('&').forEach(pair => {
+        const [key, value] = pair.split('=');
+        if (key) params[key] = decodeURIComponent(value || '');
+      });
+      return params;
+    }
+    const user = getQueryParams();
+    if (user && user.avatar && user.id) {
+      const avatarUrl = `https://cdn.discordapp.com/avatars/${user.id}/${user.avatar}.png`;
+      const iconContainer = btn && btn.querySelector('span[style]');
+      if (iconContainer) {
+        iconContainer.innerHTML = `<img src="${avatarUrl}" alt="Profile" style="width:32px;height:32px;border-radius:50%;object-fit:cover;">`;
+      }
+      const discordLogin = document.getElementById('discord-login');
+      if (discordLogin) {
+        discordLogin.style.display = 'none';
+      }
+    }
+  });
+</script>
 </body>
 </html>
+
+
+

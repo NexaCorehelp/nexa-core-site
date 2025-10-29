@@ -1,8 +1,8 @@
-<!doctype html>
+﻿<!doctype html>
 <html lang="en">
 <head>
   <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-  <title>NexaCore • Privacy Policy</title>
+  <title>NexaCore &bull; Privacy</title>
   <link rel="icon" href="assets/favicon.ico">
   <link rel="stylesheet" href="/assets/style.css">
 </head>
@@ -22,34 +22,221 @@
     </div>
   </header>
 
+  <div id="account-container">
+    <button id="account-btn" aria-label="Account" aria-controls="account-popup" aria-expanded="false">
+      <span class="account-circle-bg"></span>
+      <span style="position:relative;z-index:1;display:flex;align-items:center;justify-content:center;width:40px;height:40px;">
+        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"></circle><path d="M6 20v-2a6 6 0 0 1 12 0v2"></path></svg>
+      </span>
+    </button>
+    <div id="account-backdrop" hidden></div>
+    <div id="account-popup" role="dialog" aria-modal="true" aria-labelledby="settings-title" hidden>
+      <div class="popup-header">
+        <strong id="settings-title">Settings</strong>
+        <button type="button" class="popup-close" aria-label="Close">&times;</button>
+      </div>
+      <div class="popup-section">
+        <div>
+          <label for="theme-select">Theme:</label>
+          <select id="theme-select">
+            <option value="light">Light</option>
+            <option value="dark">Dark</option>
+          </select>
+        </div>
+        <div>
+          <label for="access-select">Accessibility:</label>
+          <select id="access-select">
+            <option value="default">Default</option>
+            <option value="high-contrast">High Contrast</option>
+          </select>
+        </div>
+      </div>
+      <div class="popup-section">
+        <a href="https://discord.com/oauth2/authorize?client_id=1396701202187681873&permissions=0&response_type=code&redirect_uri=https%3A%2F%2Fnexa-core.net%2Fapi%2Fdiscord-callback&integration_type=1&scope=email+identify+bot" id="discord-login" style="width:100%;background:#5865F2;color:white;padding:8px;border:none;border-radius:4px;cursor:pointer;text-decoration:none;display:inline-block;">
+          <img src="https://cdn.jsdelivr.net/gh/edent/SuperTinyIcons/images/svg/discord.svg" alt="Discord" style="height:20px;vertical-align:middle;margin-right:8px;"> Sign in with Discord
+        </a>
+      </div>
+    </div>
+  </div>
+
+
   <section class="hero container">
-    <h1>Privacy Policy</h1>
-    <p class="small">Effective Date: [add date]</p>
+  <h1 style="text-align:center;margin-bottom:24px;">Privacy Policy</h1>
+  <p style="text-align:center;color:#ccc;margin-bottom:32px;">Effective Date: August 19th, 2025</p>
   </section>
 
   <section class="section">
-    <div class="container">
-      <div class="card">
-        <h3>Overview</h3>
-        <p>We collect minimal data needed to provide services. This may include contact details you submit, and basic analytics.</p>
-      </div>
-      <div class="card">
-        <h3>Your Rights</h3>
-        <p>You can request access, correction, or deletion. Contact us via Discord.</p>
-      </div>
-      <div class="card">
-        <h3>Security</h3>
-        <p>We use reasonable measures to protect data. No system is perfectly secure.</p>
-      </div>
+    <div class="container" style="max-width:900px;margin:0 auto;padding:32px 24px;background:rgba(255,255,255,0.07);border-radius:18px;box-shadow:0 2px 12px rgba(0,0,0,0.08);color:#fff;">
+      <h2 style="text-align:center;color:#fff;margin-bottom:24px;">Privacy Policy</h2>
+      <p style="text-align:center;color:#ccc;margin-bottom:32px;">This Privacy Policy is effective as of August 19th, 2025.</p>
+      <section style="margin-bottom:24px;">
+        <h3 style="color:#fff;margin-bottom:10px;">1. Introduction and Acceptance</h3>
+        <p style="color:#ccc;">This policy describes how NexaCore collects, uses, stores, and protects your personal information when you use our services, including our Discord bots, websites, and custom development services (the "Service"). By accessing or using the Service, you agree to the practices described in this policy. NexaCore is the Data Controller responsible for your information.</p>
+      </section>
+      <section style="margin-bottom:24px;">
+        <h3 style="color:#fff;margin-bottom:10px;">2. Information We Collect</h3>
+        <p style="color:#ccc;">We collect information directly when you use our services or place a custom order. We do not use third-party tracking tools or cookies for this collection.</p>
+        <ul style="color:#ccc;">
+          <li><strong>Profile Data:</strong> We collect your Discord User ID, Roblox User ID, Username, Display Name, Email Address, Profile Picture, Pronouns, and other publicly available information from integrated platforms upon bot authorization or account creation.</li>
+          <li><strong>Client Data:</strong> When you place a custom order, we collect your Full Name, Email Address, and any relevant project details necessary for fulfilling Deliverables.</li>
+          <li><strong>Financial Data:</strong> We collect the Full Name and Email Address associated with the payment from our processors. NexaCore does not view, store, or process your full credit card details; this is handled entirely by <a href="https://stripe.com/privacy" style="text-decoration:underline;">Stripe Privacy Policy</a> and <a href="https://www.paypal.com/us/legalhub/privacy-full" style="text-decoration:underline;">PayPal Privacy Policy</a>.</li>
+          <li><strong>Website Metrics:</strong> Your IP Address and general access metrics are automatically collected when you visit our website, but this data is not stored long-term or associated with your profile.</li>
+        </ul>
+      </section>
+      <section style="margin-bottom:24px;">
+        <h3 style="color:#fff;margin-bottom:10px;">3. Purpose and Use of Your Information</h3>
+        <ul style="color:#ccc;">
+          <li><strong>Service Operation:</strong> To operate, maintain, and provide the functionality of the Service, and to fulfill and deliver custom development Deliverables to you.</li>
+          <li><strong>Customer Contact:</strong> To manage your account, provide customer support, and send service updates via email or Discord.</li>
+          <li><strong>Legal Compliance and Records:</strong> For internal auditing, maintaining accurate customer and financial records, and enforcing our Terms of Service.</li>
+          <li><strong>Security:</strong> To investigate potential security breaches and prevent fraudulent activity.</li>
+        </ul>
+      </section>
+      <section style="margin-bottom:24px;">
+        <h3 style="color:#fff;margin-bottom:10px;">4. Data Storage and Security</h3>
+        <p style="color:#ccc;">All data and information we collect is stored securely within NexaCore's databases using appropriate security measures (including access controls). Our primary data storage is within the United States. We retain your personal data only for as long as necessary to provide the Service, manage your account, or comply with our legal and financial record-keeping requirements.</p>
+      </section>
+      <section style="margin-bottom:24px;">
+        <h3 style="color:#fff;margin-bottom:10px;">5. Data Sharing and Confidentiality</h3>
+        <p style="color:#ccc;">NexaCore does not sell, rent, share, or transfer your personal data to any third parties, advertisers, or outside entities for marketing purposes. Data is only shared under the following limited circumstances:</p>
+        <ul style="color:#ccc;">
+          <li>With our secure payment processors (<a href="https://stripe.com/" style="text-decoration:underline;">Stripe</a>/<a href="https://paypal.com/" style="text-decoration:underline;">PayPal</a>) as necessary to complete your transactions.</li>
+          <li>When legally compelled, such as in response to a court order, subpoena, or other valid legal process.</li>
+          <li>With your explicit, written consent.</li>
+        </ul>
+      </section>
+      <section style="margin-bottom:24px;">
+        <h3 style="color:#fff;margin-bottom:10px;">6. External Services and Tracking</h3>
+        <p style="color:#ccc;">We do not use third-party tracking tools or cookies for user behavioral analysis. The Service may contain links or connections to third-party platforms (like <a href="https://discord.com/" style="text-decoration:underline;">Discord</a> or <a href="https://roblox.com/" style="text-decoration:underline;">Roblox</a>). This Privacy Policy does not cover the privacy practices of those external services. We encourage you to review their policies directly.</p>
+      </section>
+      <section style="margin-bottom:24px;">
+        <h3 style="color:#fff;margin-bottom:10px;">7. Your Privacy Rights and Contact</h3>
+        <p style="color:#ccc;">You have the right to request access to and correction or deletion of the personal data we hold about you, subject to any legal obligations we have to retain certain records.</p>
+        <p style="color:#ccc;">To exercise these rights or if you have any questions regarding this Privacy Policy, please contact us using the information below:</p>
+        <ul style="color:#ccc;">
+          <li><strong>Via Email:</strong> <a href="mailto:support@nexa-core.net" style="text-decoration:underline;">support@nexa-core.net</a></li>
+          <li><strong>Via Discord:</strong> Join our official Discord server: <a href="https://discord.gg/Cu7tQ9Ycr5" style="text-decoration:underline;">https://discord.gg/Cu7tQ9Ycr5</a></li>
+        </ul>
+      </section>
     </div>
   </section>
 
   <footer>
     <div class="container footer-inner">
-      <div>© <span id="year"></span> NexaCore. All rights reserved.</div>
-      <div class="footer-links"><a href="privacy.html">Privacy</a><a href="tos.html">Terms</a></div>
+      <div>&copy; <span id="year"></span> NexaCore. All rights reserved.</div>
+        <div class="footer-links">
+            <a href="appeal.html" style="color:#ccc;text-decoration:none;margin-right:12px;font-weight:500;">Appeal</a>
+          <a href="privacy.html">Privacy</a><a href="tos.html">Terms</a>
+        </div>
     </div>
     <script>document.getElementById('year').textContent=new Date().getFullYear()</script>
   </footer>
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    const btn = document.getElementById('account-btn');
+    const popup = document.getElementById('account-popup');
+    const backdrop = document.getElementById('account-backdrop');
+    const closeBtn = document.querySelector('#account-popup .popup-close');
+    const themeSelect = document.getElementById('theme-select');
+    const accessSelect = document.getElementById('access-select');
+
+    const savedTheme = localStorage.getItem('theme');
+    const savedAccess = localStorage.getItem('access');
+    const prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+    const prefersHighContrast = window.matchMedia && window.matchMedia('(prefers-contrast: more)').matches;
+    const theme = savedTheme || (prefersDark ? 'dark' : 'light');
+    const access = savedAccess || (prefersHighContrast ? 'high-contrast' : 'default');
+    document.body.setAttribute('data-theme', theme);
+    document.body.setAttribute('data-access', access);
+    if (themeSelect) themeSelect.value = theme;
+    if (accessSelect) accessSelect.value = access;
+
+    themeSelect.addEventListener('change', (e) => {
+      const v = e.target.value;
+      document.body.setAttribute('data-theme', v);
+      localStorage.setItem('theme', v);
+    });
+    accessSelect.addEventListener('change', (e) => {
+      const v = e.target.value;
+      document.body.setAttribute('data-access', v);
+      localStorage.setItem('access', v);
+    });
+
+    let lastFocused = null;
+    const getFocusable = () => popup.querySelectorAll('a, button, input, select, textarea, [tabindex]:not([tabindex="-1"])');
+    const openPopup = () => {
+      lastFocused = document.activeElement;
+      backdrop.hidden = false;
+      popup.hidden = false;
+      requestAnimationFrame(() => {
+        popup.classList.add('is-open');
+        backdrop.classList.add('is-open');
+        btn.setAttribute('aria-expanded', 'true');
+        const focusables = getFocusable();
+        if (focusables.length) focusables[0].focus();
+      });
+    };
+    const closePopup = () => {
+      popup.classList.remove('is-open');
+      backdrop.classList.remove('is-open');
+      btn.setAttribute('aria-expanded', 'false');
+      const finish = () => {
+        popup.hidden = true;
+        backdrop.hidden = true;
+        if (lastFocused) lastFocused.focus();
+        popup.removeEventListener('transitionend', finish);
+      };
+      popup.addEventListener('transitionend', finish);
+      setTimeout(finish, 150);
+    };
+
+    if (btn) btn.addEventListener('click', () => { if (popup.hidden) openPopup(); else closePopup(); });
+    if (closeBtn) closeBtn.addEventListener('click', closePopup);
+    if (backdrop) backdrop.addEventListener('click', closePopup);
+
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && popup && !popup.hidden) {
+        e.preventDefault();
+        closePopup();
+      } else if (e.key === 'Tab' && popup && !popup.hidden) {
+        const focusables = Array.from(getFocusable());
+        if (!focusables.length) return;
+        const first = focusables[0];
+        const last = focusables[focusables.length - 1];
+        if (e.shiftKey && document.activeElement === first) {
+          e.preventDefault(); last.focus();
+        } else if (!e.shiftKey && document.activeElement === last) {
+          e.preventDefault(); first.focus();
+        }
+      }
+    });
+
+    function getQueryParams() {
+      const params = {};
+      const q = window.location.search.replace(/^\?/, '');
+      if (!q) return params;
+      q.split('&').forEach(pair => {
+        const [key, value] = pair.split('=');
+        if (key) params[key] = decodeURIComponent(value || '');
+      });
+      return params;
+    }
+    const user = getQueryParams();
+    if (user && user.avatar && user.id) {
+      const avatarUrl = `https://cdn.discordapp.com/avatars/${user.id}/${user.avatar}.png`;
+      const iconContainer = btn && btn.querySelector('span[style]');
+      if (iconContainer) {
+        iconContainer.innerHTML = `<img src="${avatarUrl}" alt="Profile" style="width:32px;height:32px;border-radius:50%;object-fit:cover;">`;
+      }
+      const discordLogin = document.getElementById('discord-login');
+      if (discordLogin) {
+        discordLogin.style.display = 'none';
+      }
+    }
+  });
+</script>
 </body>
 </html>
+
+
+

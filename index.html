@@ -1,105 +1,26 @@
-<!doctype html>
+﻿<!doctype html>
 <html lang="en">
 <head>
   <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-  <title>NexaCore • Home</title>
+  <title>NexaCore &bull; Home</title>
   <link rel="icon" href="assets/favicon.ico">
   <link rel="stylesheet" href="/assets/style.css">
 </head>
-<style>
-  #account-container {
-    position: fixed;
-    top: 20px;
-    right: 30px;
-    z-index: 1000;
-  }
-  #account-btn {
-    position: relative;
-    width: 40px;
-    height: 40px;
-    border: none;
-    background: none;
-    padding: 0;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-  .account-circle-bg {
-    position: absolute;
-    left: 0;
-    top: 0;
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
-    background: rgba(107, 106, 106, 0.11); /* very faint gray */
-    z-index: 0;
-    pointer-events: none;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.03);
-    transition: background 0.2s;
-  }
-  #account-btn:hover .account-circle-bg {
-    background: rgba(128,128,128,0.18);
-  }
-  #account-popup {
-    position: absolute;
-    top: 40px;
-    right: 0;
-    width: 220px;
-    background: #fff;
-    border: 1px solid #ccc;
-    border-radius: 8px;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.15);
-    padding: 16px;
-    display: none;
-  }
-  .popup-section {
-    margin-bottom: 12px;
-  }
-  #account-btn:focus {
-    outline: 2px solid #5865F2;
-  }
-</style>
-<script>
-  document.addEventListener('DOMContentLoaded', function() {
-    const btn = document.getElementById('account-btn');
-    const popup = document.getElementById('account-popup');
-    const accountIcon = btn.querySelector('svg');
-    btn.addEventListener('click', function(e) {
-      popup.style.display = popup.style.display === 'none' ? 'block' : 'none';
-    });
-    document.addEventListener('click', function(e) {
-      if (!btn.contains(e.target) && !popup.contains(e.target)) {
-        popup.style.display = 'none';
-      }
-    });
-    document.getElementById('discord-login').addEventListener('click', function() {
-      window.location.href = '/login/discord';
-    });
-    document.getElementById('theme-select').addEventListener('change', function(e) {
-      document.body.setAttribute('data-theme', e.target.value);
-    });
-    document.getElementById('access-select').addEventListener('change', function(e) {
-      document.body.setAttribute('data-access', e.target.value);
-    });
-
-    // Fetch user info and update icon
-    fetch('/api/user')
-      .then(res => res.ok ? res.json() : null)
-      .then(user => {
-        if (user && user.avatar) {
-          const avatarUrl = `https://cdn.discordapp.com/avatars/${user.id}/${user.avatar}.png`;
-          // Replace SVG with avatar
-          const iconContainer = btn.querySelector('span[style]');
-          if (iconContainer) {
-            iconContainer.innerHTML = `<img src="${avatarUrl}" alt="Profile" style="width:32px;height:32px;border-radius:50%;object-fit:cover;">`;
-          }
-        }
-      });
-  });
-</script>
-</head>
 <body>
+    <div id="profile-popup-backdrop" class="profile-popup-backdrop" hidden></div>
+    <div id="profile-popup" class="profile-popup" hidden>
+      <div class="profile-popup-content">
+        <button class="profile-popup-close" aria-label="Close">&times;</button>
+        <div id="profile-popup-details"></div>
+      </div>
+    </div>
+    <div id="profile-popup-backdrop" class="profile-popup-backdrop" hidden></div>
+    <div id="profile-popup" class="profile-popup" hidden>
+      <div class="profile-popup-content">
+        <button class="profile-popup-close" aria-label="Close">&times;</button>
+        <div id="profile-popup-details"></div>
+      </div>
+    </div>
 
   <!-- Header -->
   <header class="header-band">
@@ -111,8 +32,8 @@
         </a>
         <ul>
           <li><a href="index.html" class="active">Home</a></li>
-          <li><a href="bots.html">Bots</a></li>
-          <li><a href="hosting.html">Hosting</a></li>
+            <li><a href="catalogue.html">Catalogue</a></li>
+            <li><a href="services.html">Services</a></li>
           <li><a href="orders.html">Orders</a></li>
           <li><a href="contact.html">Contact</a></li>
         </ul>
@@ -122,32 +43,29 @@
 
   <!-- Account Icon and Popup -->
   <div id="account-container">
-    <button id="account-btn" aria-label="Account">
+    <button id="account-btn" aria-label="Account" aria-controls="account-popup" aria-expanded="false">
       <span class="account-circle-bg"></span>
       <span style="position:relative;z-index:1;display:flex;align-items:center;justify-content:center;width:40px;height:40px;">
         <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"></circle><path d="M6 20v-2a6 6 0 0 1 12 0v2"></path></svg>
       </span>
     </button>
-    <div id="account-popup">
+    <div id="account-backdrop" hidden></div>
+    <div id="account-popup" role="dialog" aria-modal="true" aria-labelledby="settings-title" hidden>
+      <div class="popup-header">
+        <strong id="settings-title">Settings</strong>
+  <button type="button" class="popup-close" aria-label="Close">&times;</button>
+      </div>
       <div class="popup-section">
-        <strong>Settings</strong>
         <div>
           <label for="theme-select">Theme:</label>
           <select id="theme-select">
-            <option value="light">Light</option>
-            <option value="dark">Dark</option>
-          </select>
-        </div>
-        <div>
-          <label for="access-select">Accessibility:</label>
-          <select id="access-select">
             <option value="default">Default</option>
             <option value="high-contrast">High Contrast</option>
           </select>
         </div>
       </div>
       <div class="popup-section">
-                <a href="https://discord.com/oauth2/authorize?client_id=1396701202187681873&response_type=code&redirect_uri=https%3A%2F%2Fnexa-core.net%2Fapi%2Fdiscord-callback&scope=email+identify" id="discord-login" style="width:100%;background:#5865F2;color:white;padding:8px;border:none;border-radius:4px;cursor:pointer;text-decoration:none;display:inline-block;">
+        <a href="https://discord.com/oauth2/authorize?client_id=1396701202187681873&permissions=0&response_type=code&redirect_uri=https%3A%2F%2Fnexa-core.net%2Fapi%2Fdiscord-callback&integration_type=1&scope=email+identify" id="discord-login" style="width:100%;background:#5865F2;color:white;padding:8px;border:none;border-radius:4px;cursor:pointer;text-decoration:none;display:inline-block;">
           <img src="https://cdn.jsdelivr.net/gh/edent/SuperTinyIcons/images/svg/discord.svg" alt="Discord" style="height:20px;vertical-align:middle;margin-right:8px;"> Sign in with Discord
         </a>
       </div>
@@ -156,29 +74,43 @@
 
   <!-- Hero -->
   <section class="hero container">
-    <h1>Reliable. Scalable. Professional.</h1>
-    <p>Custom Discord bots, ER:LC integrations with NexaPatch, and global bot hosting. Built for communities that need power and simplicity.</p>
-    <a class="cta" href="orders.html">Start an Order</a>
+  <h1>From concept, to code.</h1>
+    <p>NexaCore is a coding studio that aims to allow server and game owners to connect easier. We currently offer a wide variety of service, these are, but are not imited to: Discord bots, Discord servers. Custom apps, websites, scripts. Or even ER:LC liveries, uniforms, ELS, or even full server setups.</p>
+    <a class="cta" href="orders.html">Place an Order</a>
   </section>
 
   <!-- Services -->
   <section class="section">
-    <div class="container">
-      <div class="cards">
-        <div class="card">
-          <h3>Discord Bots</h3>
-          <p>Moderation, automations, leveling, tickets, anti-raid, and custom features tailored to your server.</p>
+      <div class="container">
+        <div style="margin-bottom: 8px; text-align: center; position: relative; top: -16px;">
+          <h2 style="color: #fff; margin-bottom: 4px;">Meet the team</h2>
+          <hr style="width: 120px; border: 2px solid #fff; margin: 0 auto;">
         </div>
-        <div class="card">
-          <h3>NexaPatch (ER:LC)</h3>
-          <p>ER:LC integrations that connect in-game events to Discord with alerting and control.</p>
-        </div>
-        <div class="card">
-          <h3>Hosting</h3>
-          <p>Global locations, four plans, stable performance. Managed and monitored.</p>
+        <div class="cards team-cards">
+          <div class="card profile-card">
+            <img src="assets/carrkaiden1212.jpg" alt="BEST" class="profile-img">
+            <div class="profile-info">
+              <h3 style="color:#e0c800;margin-bottom:4px;"><span style="color:#c800e0;">BEST</span></h3>
+              <div class="profile-tags">
+                <span class="profile-tag">Discord</span>
+                <span class="profile-tag">Bots</span>
+              </div>
+              <p style="color:#ccc; margin-top:10px; font-size:1rem;">Hey, I'm BEST, My main focus is developing and everything maintaining  behind the scenes, making sure everything runs smoothly for our clients and community. If you have any questions about our products or need help with a project, feel free to reach out to me directly or join our Discord server. I'm always happy to help!</p>
+            </div>
+          </div>
+          <div class="card profile-card">
+            <img src="assets/void.jpg" alt="Void" class="profile-img">
+            <div class="profile-info">
+              <h3 style="color:#e0c800;margin-bottom:4px;"><span style="color:#c800e0;">Void</span></h3>
+              <div class="profile-tags">
+                <span class="profile-tag">Discord</span>
+                <span class="profile-tag">Bots</span>
+              </div>
+              <p style="color:#ccc; margin-top:10px; font-size:1rem;">Hey, I'm Void, I work as the chief of operations as I handle all staffing and upfront issues. Though I lead operations I still have coding skills. I currently use 2 different languages, JavaScript and Luau. If you ever would like any assistance feel free to ask me through DMs, or by joining our Discord server! Thanks for reading!</p>
+            </div>
+          </div>
         </div>
       </div>
-    </div>
   </section>
 
   <!-- CTA -->
@@ -190,7 +122,7 @@
   <!-- Footer -->
   <footer>
     <div class="container footer-inner">
-      <div>© <span id="year"></span> NexaCore. All rights reserved.</div>
+      <div>&copy; <span id="year"></span> NexaCore. All rights reserved.</div>
       <div class="footer-links">
         <a href="privacy.html">Privacy</a>
         <a href="tos.html">Terms</a>
@@ -198,5 +130,154 @@
     </div>
     <script>document.getElementById('year').textContent=new Date().getFullYear()</script>
   </footer>
+  <script>
+    // Profile card popup logic
+    document.addEventListener('DOMContentLoaded', function() {
+      const profileCards = document.querySelectorAll('.profile-card');
+      const popup = document.getElementById('profile-popup');
+      const backdrop = document.getElementById('profile-popup-backdrop');
+      const closeBtn = document.querySelector('.profile-popup-close');
+      const details = document.getElementById('profile-popup-details');
+
+      const profiles = {
+        carrkaiden1212: {
+          img: 'assets/carrkaiden1212.jpg',
+          name: 'Carrkaiden1212',
+          tags: ['Discord', 'Bots', 'Apps', 'Websites', 'Scripts', 'Setups'],
+          role: 'Lead Developer',
+          desc: 'Lead developer and founder of NexaCore. Specializes in Discord bots, apps, websites, scripts, and server setups.'
+        },
+        void: {
+          img: 'assets/void.jpg',
+          name: 'Void',
+          tags: ['Discord', 'Bots'],
+          role: 'Infrastructure & Support',
+          desc: 'Handles infrastructure and support for NexaCore. Expert in server management and bot deployment.'
+        }
+      };
+
+      function renderProfile(profile) {
+        return `
+          <div class="profile-card expanded">
+            <img src="${profile.img}" alt="${profile.name}" class="profile-img">
+            <div class="profile-info">
+              <h3 style="color:#e0c800;margin-bottom:4px;"><span style="color:#c800e0;">${profile.name}</span></h3>
+              <div class="profile-tags">
+                ${profile.tags.map(tag => `<span class="profile-tag">${tag}</span>`).join(' ')}
+              </div>
+              <p style="color:#fff;">${profile.role}</p>
+              <p style="color:#ccc; margin-top:8px;">${profile.desc}</p>
+            </div>
+          </div>
+        `;
+      }
+    });
+
+  document.addEventListener('DOMContentLoaded', function() {
+    const btn = document.getElementById('account-btn');
+    const popup = document.getElementById('account-popup');
+    const backdrop = document.getElementById('account-backdrop');
+    const closeBtn = document.querySelector('#account-popup .popup-close');
+    const themeSelect = document.getElementById('theme-select');
+    const accessSelect = document.getElementById('access-select');
+
+    const savedTheme = localStorage.getItem('theme');
+    const savedAccess = localStorage.getItem('access');
+    const prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+    const prefersHighContrast = window.matchMedia && window.matchMedia('(prefers-contrast: more)').matches;
+    const theme = savedTheme || (prefersDark ? 'dark' : 'light');
+    const access = savedAccess || (prefersHighContrast ? 'high-contrast' : 'default');
+    document.body.setAttribute('data-theme', theme);
+    document.body.setAttribute('data-access', access);
+    if (themeSelect) themeSelect.value = theme;
+    if (accessSelect) accessSelect.value = access;
+
+    themeSelect.addEventListener('change', (e) => {
+      const v = e.target.value;
+      document.body.setAttribute('data-theme', v);
+      localStorage.setItem('theme', v);
+    });
+    accessSelect.addEventListener('change', (e) => {
+      const v = e.target.value;
+      document.body.setAttribute('data-access', v);
+      localStorage.setItem('access', v);
+    });
+
+    let lastFocused = null;
+    const getFocusable = () => popup.querySelectorAll('a, button, input, select, textarea, [tabindex]:not([tabindex="-1"])');
+    const openPopup = () => {
+      lastFocused = document.activeElement;
+      backdrop.hidden = false;
+      popup.hidden = false;
+      requestAnimationFrame(() => {
+        popup.classList.add('is-open');
+        backdrop.classList.add('is-open');
+        btn.setAttribute('aria-expanded', 'true');
+        const focusables = getFocusable();
+        if (focusables.length) focusables[0].focus();
+      });
+    };
+    const closePopup = () => {
+      popup.classList.remove('is-open');
+      backdrop.classList.remove('is-open');
+      btn.setAttribute('aria-expanded', 'false');
+      const finish = () => {
+        popup.hidden = true;
+        backdrop.hidden = true;
+        if (lastFocused) lastFocused.focus();
+        popup.removeEventListener('transitionend', finish);
+      };
+      popup.addEventListener('transitionend', finish);
+      setTimeout(finish, 150);
+    };
+
+    btn.addEventListener('click', () => {
+      if (popup.hidden) openPopup(); else closePopup();
+    });
+    closeBtn.addEventListener('click', closePopup);
+    backdrop.addEventListener('click', closePopup);
+
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && !popup.hidden) {
+        e.preventDefault();
+        closePopup();
+      } else if (e.key === 'Tab' && !popup.hidden) {
+        const focusables = Array.from(getFocusable());
+        if (!focusables.length) return;
+        const first = focusables[0];
+        const last = focusables[focusables.length - 1];
+        if (e.shiftKey && document.activeElement === first) {
+          e.preventDefault(); last.focus();
+        } else if (!e.shiftKey && document.activeElement === last) {
+          e.preventDefault(); first.focus();
+        }
+      }
+    });
+
+    function getQueryParams() {
+      const params = {};
+      const q = window.location.search.replace(/^\?/, '');
+      if (!q) return params;
+      q.split('&').forEach(pair => {
+        const [key, value] = pair.split('=');
+        if (key) params[key] = decodeURIComponent(value || '');
+      });
+      return params;
+    }
+    const user = getQueryParams();
+    if (user && user.avatar && user.id) {
+      const avatarUrl = `https://cdn.discordapp.com/avatars/${user.id}/${user.avatar}.png`;
+      const iconContainer = btn.querySelector('span[style]');
+      if (iconContainer) {
+        iconContainer.innerHTML = `<img src="${avatarUrl}" alt="Profile" style="width:32px;height:32px;border-radius:50%;object-fit:cover;">`;
+      }
+      const discordLogin = document.getElementById('discord-login');
+      if (discordLogin) {
+        discordLogin.style.display = 'none';
+      }
+    }
+});
+</script>
 </body>
 </html>
+    
