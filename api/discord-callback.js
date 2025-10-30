@@ -4,6 +4,7 @@ export default async function handler(req, res) {
   console.log('discord-callback handler invoked');
   const code = req.query.code;
   const isAdmin = req.query.state === 'admin';
+  console.log('Callback URL:', req.url, 'State:', req.query.state);
   if (!code) {
     res.status(400).send('No code provided');
     return;
