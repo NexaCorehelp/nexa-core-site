@@ -10,6 +10,7 @@ export default async function handler(req, res) {
   const CLIENT_ID = process.env.DISCORD_CLIENT_ID;
   const CLIENT_SECRET = process.env.DISCORD_CLIENT_SECRET;
   const REDIRECT_URI = process.env.DISCORD_REDIRECT_URI;
+  console.log('Using redirect_uri:', REDIRECT_URI);
 
   // Exchange code for access token
   const tokenRes = await fetch('https://discord.com/api/oauth2/token', {
