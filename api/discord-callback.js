@@ -28,6 +28,7 @@ export default async function handler(req, res) {
   });
   const tokenData = await tokenRes.json();
   if (!tokenData.access_token) {
+      console.log('Token response:', tokenData);
     res.status(400).send('Failed to get access token');
     return;
   }
