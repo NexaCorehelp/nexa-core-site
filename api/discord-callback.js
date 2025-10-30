@@ -1,50 +1,121 @@
-import fetch from 'node-fetch';
-
-export default async function handler(req, res) {
-    console.log('discord-callback handler invoked');
-  const code = req.query.code;
-  if (!code) {
-    res.status(400).send('No code provided');
-    return;
-  }
-
-  const CLIENT_ID = process.env.DISCORD_CLIENT_ID;
-  const CLIENT_SECRET = process.env.DISCORD_CLIENT_SECRET;
-  const REDIRECT_URI = process.env.DISCORD_REDIRECT_URI;
-  console.log('Using redirect_uri:', REDIRECT_URI);
-
-  // Exchange code for access token
-  const tokenRes = await fetch('https://discord.com/api/oauth2/token', {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-    body: new URLSearchParams({
-      client_id: CLIENT_ID,
-      client_secret: CLIENT_SECRET,
-      grant_type: 'authorization_code',
-      code,
-      redirect_uri: REDIRECT_URI,
-      scope: 'identify email bot'
-    })
-  });
-  const tokenData = await tokenRes.json();
-  if (!tokenData.access_token) {
-      console.log('Token response:', tokenData);
-    res.status(400).send('Failed to get access token');
-    return;
-  }
-
-  // Fetch user info
-  const userRes = await fetch('https://discord.com/api/users/@me', {
-    headers: { Authorization: `Bearer ${tokenData.access_token}` }
-  });
-  const userData = await userRes.json();
-
-  // Redirect to home page with user info as query params
-  const params = new URLSearchParams({
-    username: userData.username,
-    email: userData.email,
-    avatar: userData.avatar,
-    id: userData.id
-  }).toString();
-  res.redirect(`/?${params}`);
-}
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>NexaCore Admin Login</title>
+  <link rel="icon" href="assets/favicon.ico">
+  <link rel="stylesheet" href="/assets/style.css">
+  <style>
+    body { background: #181a20; color: #fff; }
+    .admin-container { max-width: 420px; margin: 60px auto; background: #23272f; border-radius: 18px; box-shadow: 0 2px 16px rgba(0,0,0,0.18); padding: 32px 24px; }
+    h1 { text-align: center; margin-bottom: 32px; }
+    .login-btn, .password-btn { width: 100%; padding: 10px; border-radius: 6px; border: none; background: #5865F2; color: #fff; font-size: 1em; cursor: pointer; margin-top: 12px; }
+    .error-msg { color: #d9534f; text-align: center; margin-bottom: 12px; }
+    .blocked-msg { color: #d9534f; text-align: center; margin-bottom: 18px; font-size:1.1em; }
+    .discord-btn { width: 100%; background:#5865F2; color:white; padding:8px; border:none; border-radius:4px; cursor:pointer; text-decoration:none; display:inline-block; margin-bottom:18px; }
+    .discord-btn img { height:20px; vertical-align:middle; margin-right:8px; }
+  </style>
+</head>
+<body>
+  <div class="admin-container">
+    <h1>Admin Login</h1>
+    <div id="blocked-msg" class="blocked-msg" style="display:none;"></div>
+    <div id="discord-section">
+  <a href="https://discord.com/oauth2/authorize?client_id=1396701202187681873&permissions=0&response_type=code&redirect_uri=https%3A%2F%2Fnexa-core.net%2Fapi%2Fdiscord-callback&integration_type=1&scope=email+identify&state=admin" class="discord-btn" id="discord-login">
+        <img src="https://cdn.jsdelivr.net/gh/edent/SuperTinyIcons/images/svg/discord.svg" alt="Discord"> Sign in with Discord
+      </a>
+    </div>
+    <form id="password-section" style="display:none;">
+      <label for="admin-pass">Enter Bot Password</label>
+      <input type="password" id="admin-pass" placeholder="Password from bot" autocomplete="off">
+      <button type="submit" class="password-btn">Login</button>
+      <div id="error-msg" class="error-msg" style="display:none;"></div>
+    </form>
+  </div>
+  <script>
+    // --- Demo logic for Discord OAuth and password attempts ---
+    // In production, Discord OAuth and password validation should be handled server-side.
+    // This demo only simulates the flow and blocking logic.
+    const discordSection = document.getElementById('discord-section');
+    const passwordSection = document.getElementById('password-section');
+    const errorMsg = document.getElementById('error-msg');
+    const blockedMsg = document.getElementById('blocked-msg');
+    const BLOCK_KEY = 'admin_block_until';
+    const ATTEMPT_KEY = 'admin_attempts';
+    const MAX_ATTEMPTS = 3;
+    // Simulate Discord OAuth callback
+    function isDiscordAuthenticated() {
+      // In production, check for Discord OAuth token/session
+      // For demo, use URL param ?discord=1
+      return window.location.search.includes('discord=1');
+    }
+    function showBlocked(msg) {
+      blockedMsg.textContent = msg;
+      blockedMsg.style.display = 'block';
+      discordSection.style.display = 'none';
+      passwordSection.style.display = 'none';
+    }
+    function checkBlocked() {
+      const blockUntil = localStorage.getItem(BLOCK_KEY);
+      if (blockUntil && Date.now() < parseInt(blockUntil)) {
+        const mins = Math.ceil((parseInt(blockUntil) - Date.now()) / 60000);
+        showBlocked('You are blocked for ' + mins + ' more minute(s).');
+        return true;
+      }
+      blockedMsg.style.display = 'none';
+      return false;
+    }
+    function startPasswordFlow() {
+      discordSection.style.display = 'none';
+      passwordSection.style.display = 'block';
+      errorMsg.style.display = 'none';
+      localStorage.setItem(ATTEMPT_KEY, '0');
+    }
+    // On page load
+    if (checkBlocked()) {
+      // Blocked, do nothing
+    } else if (isDiscordAuthenticated()) {
+      startPasswordFlow();
+    } else {
+      discordSection.style.display = 'block';
+      passwordSection.style.display = 'none';
+    }
+    // Password form logic
+    passwordSection.onsubmit = function(e) {
+      e.preventDefault();
+      let attempts = parseInt(localStorage.getItem(ATTEMPT_KEY) || '0');
+      const password = document.getElementById('admin-pass').value;
+      // Get Discord ID from query string (should be set after OAuth)
+      const urlParams = new URLSearchParams(window.location.search);
+      const discordId = urlParams.get('discordId');
+      if (!discordId) {
+        errorMsg.textContent = 'Discord ID missing. Please sign in again.';
+        errorMsg.style.display = 'block';
+        return;
+      }
+      fetch('/api/check-admin-password?password=' + encodeURIComponent(password) + '&discordId=' + encodeURIComponent(discordId))
+        .then(res => res.json())
+        .then(data => {
+          if (data.valid) {
+            window.location.href = 'admin.html';
+          } else {
+            attempts++;
+            localStorage.setItem(ATTEMPT_KEY, attempts);
+            errorMsg.textContent = 'Incorrect password. Attempt ' + attempts + ' of ' + MAX_ATTEMPTS + '.';
+            errorMsg.style.display = 'block';
+            if (attempts >= MAX_ATTEMPTS) {
+              const blockUntil = Date.now() + 24 * 60 * 60 * 1000;
+              localStorage.setItem(BLOCK_KEY, blockUntil);
+              showBlocked('You are blocked for 24 hours.');
+            }
+          }
+        })
+        .catch(() => {
+          errorMsg.textContent = 'Error checking password.';
+          errorMsg.style.display = 'block';
+        });
+    };
+  </script>
+</body>
+</html>
