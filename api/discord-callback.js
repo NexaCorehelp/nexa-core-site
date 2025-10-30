@@ -1,6 +1,7 @@
 import fetch from 'node-fetch';
 
 export default async function handler(req, res) {
+    console.log('discord-callback handler invoked');
   const code = req.query.code;
   if (!code) {
     res.status(400).send('No code provided');
