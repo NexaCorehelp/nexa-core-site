@@ -1,6 +1,6 @@
 import fetch from 'node-fetch';
 
-export async function handler(req, res) {
+export default async function handler(req, res) {
   console.log('discord-callback handler invoked');
   const code = req.query.code;
   const isAdmin = req.query.state === 'admin';
