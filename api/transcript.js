@@ -26,6 +26,67 @@ export default async function handler(req, res) {
     const fileName = Object.keys(gist.files)[0];
     const content = gist.files[fileName].content;
     
+    // Function to parse Discord mentions and replace them
+    function parseMentions(text) {
+      // Replace user mentions <@userid> with @username (extract from context if possible)
+      text = text.replace(/<@(\d+)>/g, (match, userId) => {
+        // Try to find username from transcript context
+        const userRegex = new RegExp(`${userId}.*?([^\\s]+)#\\d{4}`, 'i');
+        const userMatch = content.match(userRegex);
+        if (userMatch) {
+          return `@${userMatch[1]}`;
+        }
+        return `@User-${userId.slice(-4)}`;
+      });
+      
+      // Replace role mentions <@&roleid> with @role_name
+      text = text.replace(/<@&(\d+)>/g, (match, roleId) => {
+        // Common role mappings based on your config
+        const roleMappings = {
+          '1396699975299108915': 'Nexa Staff',
+          '1405348622404550737': 'Executive Team',
+          '1405349637493100684': 'Management Team',
+          '1410089894608638092': 'Head Developer',
+          '1405350534805716992': 'Developer',
+          '1410090085617238146': 'Intern Developer',
+          '1431768040516616293': 'Development Team',
+          '1410691179972005979': 'Designer',
+          '1411024689626878002': 'Designer Team',
+          '1405349518198706266': 'Management',
+          '1405351430482694175': 'Public Relations Agent',
+          '1410089553414590504': 'Head Management',
+          '1411024789413433477': 'Intern Designer',
+          '1411024899434352660': 'Head Designer',
+          '1396692654577946769': 'Owner',
+          '1396696081383034960': 'Verified'
+        };
+        
+        return `@${roleMappings[roleId] || `Role-${roleId.slice(-4)}`}`;
+      });
+      
+      // Replace channel mentions <#channelid> with #channel-name
+      text = text.replace(/<#(\d+)>/g, (match, channelId) => {
+        // Common channel mappings
+        const channelMappings = {
+          '1396691160713527336': 'verify',
+          '1396692464915583049': 'ticket-channel',
+          '1406124901449859193': 'self-roles',
+          '1405697100032770098': 'greetings',
+          '1410079718790922343': 'feedback',
+          '1405698522493222973': 'portfolio',
+          '1411337491494994041': 'about-us'
+        };
+        
+        return `#${channelMappings[channelId] || `channel-${channelId.slice(-4)}`}`;
+      });
+      
+      // Replace @everyone and @here
+      text = text.replace(/@everyone/g, '<span class="mention-everyone">@everyone</span>');
+      text = text.replace(/@here/g, '<span class="mention-here">@here</span>');
+      
+      return text;
+    }
+    
     // Parse the transcript to extract messages
     const messages = [];
     const lines = content.split('\n');
@@ -41,12 +102,12 @@ export default async function handler(req, res) {
         currentMessage = {
           timestamp: messageMatch[1],
           username: messageMatch[2],
-          content: messageMatch[3],
+          content: parseMentions(messageMatch[3]),
           avatar: `https://ui-avatars.com/api/?name=${encodeURIComponent(messageMatch[2])}&background=5865f2&color=fff&size=40`
         };
       } else if (currentMessage && line.trim()) {
         // Continue multi-line message
-        currentMessage.content += '\n' + line;
+        currentMessage.content += '\n' + parseMentions(line);
       } else if (line.includes('[EMBED:') || line.includes('[ATTACHMENTS:')) {
         if (currentMessage) {
           currentMessage.content += '\n' + line;
@@ -184,6 +245,14 @@ export default async function handler(req, res) {
             color: #dcddde;
             word-wrap: break-word;
             white-space: pre-wrap;
+        }
+        
+        .mention-everyone, .mention-here {
+            background-color: rgba(250, 166, 26, 0.1);
+            color: #faa61a;
+            padding: 0 2px;
+            border-radius: 3px;
+            font-weight: 500;
         }
         
         .embed-indicator {
