@@ -1,0 +1,38 @@
+.transcript-container {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 20px;
+  font-family: 'Inter', Arial, sans-serif;
+}
+
+.transcript-header {
+  border-bottom: 2px solid #333;
+  padding-bottom: 15px;
+  margin-bottom: 25px;
+}
+
+.transcript-header h1 {
+  color: #333;
+  margin: 0;
+}
+
+.transcript-content {
+  background: #f8f9fa;
+  border: 1px solid #dee2e6;
+  border-radius: 8px;
+  padding: 20px;
+  overflow-x: auto;
+}
+
+.transcript-content pre {
+  margin: 0;
+  white-space: pre-wrap;
+  font-family: 'Courier New', monospace;
+  line-height: 1.4;
+}
+
+.error-page {
+  text-align: center;
+  padding: 50px;
+  color: #666;
+}
