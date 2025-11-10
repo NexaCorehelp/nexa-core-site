@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 {
   "name": "nexa-core-site",
   "version": "1.0.0",
@@ -7,16 +6,4 @@
   "type": "module",
   "dependencies": {
     "node-fetch": "^2.6.7"
-  }
-=======
-{
-  "name": "nexa-core-site",
-  "version": "1.0.0",
-  "main": "index.js",
-  "license": "MIT",
-  "type": "module",
-  "dependencies": {
-    "node-fetch": "^2.6.7"
-  }
->>>>>>> 0f3c589 (Removed admin pages and also added .gitignore)
-}
+  }}

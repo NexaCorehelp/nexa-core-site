@@ -3,10 +3,6 @@ import fetch from 'node-fetch';
 export default async function handler(req, res) {
   console.log('discord-callback handler invoked');
   const code = req.query.code;
-<<<<<<< HEAD
-  const isAdmin = req.query.state === 'admin';
-=======
->>>>>>> 0f3c589 (Removed admin pages and also added .gitignore)
   console.log('Callback URL:', req.url, 'State:', req.query.state);
   if (!code) {
     res.status(400).send('No code provided');
@@ -44,13 +40,6 @@ export default async function handler(req, res) {
   });
   const userData = await userRes.json();
 
-<<<<<<< HEAD
-  if (isAdmin) {
-    // Redirect to admin-login.html with Discord ID
-    res.redirect(`/admin-login.html?discord=1&discordId=${userData.id}`);
-  } else {
-=======
->>>>>>> 0f3c589 (Removed admin pages and also added .gitignore)
     // Redirect to home page with user info as query params
     const params = new URLSearchParams({
       username: userData.username,
@@ -59,8 +48,4 @@ export default async function handler(req, res) {
       id: userData.id
     }).toString();
     res.redirect(`/?${params}`);
-<<<<<<< HEAD
-  }
-=======
->>>>>>> 0f3c589 (Removed admin pages and also added .gitignore)
 }
