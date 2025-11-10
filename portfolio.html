@@ -1,0 +1,443 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>NexaCore — Portfolios</title>
+  <link rel="icon" href="assets/favicon.ico">
+  <link rel="stylesheet" href="/assets/style.css">
+  <link rel="stylesheet" href="/assets/portfolio.css">
+  <meta name="description" content="Selected work and case studies by NexaCore: bots, websites, apps, servers.">
+ </head>
+<body>
+  <header class="header-band">
+    <div class="container">
+      <nav class="nav">
+        <a class="brand" href="index.html"><img src="assets/logo.png" alt=""><span>NexaCore</span></a>
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="catalogue.html">Catalogue</a></li>
+          <li><a href="portfolio.html" class="active">Portfolios</a></li>
+          <li><a href="orders.html">Reviews</a></li>
+          <li><a href="appeal.html">Appeals</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <section class="hero container portfolio-hero">
+    <h1>Portfolios</h1>
+    <p>Selected work from our bots, websites, apps and server projects. Search by title, tag, or staff.</p>
+    <div class="portfolio-search">
+      <input type="search" id="portfolio-search" placeholder="Search portfolio…" aria-label="Search portfolio">
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="portfolio-grid staff-list" id="staff-list">
+        <article class="portfolio-card staff-large" data-staff="BEST">
+          <img class="staff-avatar" src="assets/carrkaiden1212.jpg" alt="BEST">
+          <div class="portfolio-body">
+            <h3>BEST</h3>
+            <div class="role-tags">
+              <span class="role-tag">HTML</span>
+              <span class="role-tag">CSS</span>
+              <span class="role-tag">JavaScript</span>
+              <span class="role-tag">Lua</span>
+              <span class="role-tag">Python</span>
+            </div>
+            <p class="small">Owner of NexaCore, DM's are open.</p>
+          </div>
+          <div class="portfolio-actions"><button class="button view-projects" data-staff="BEST">View Projects</button></div>
+        </article>
+        <article class="portfolio-card staff-large" data-staff="Void">
+          <img class="staff-avatar" src="assets/void.jpg" alt="Void">
+          <div class="portfolio-body">
+            <h3>Void</h3>
+            <div class="role-tags"><span class="role-tag">JavaScript</span></div>
+            <p class="small">Owner of NexaCore, also learning Javascript!</p>
+          </div>
+          <div class="portfolio-actions"><button class="button view-projects" data-staff="Void">View Projects</button></div>
+        </article>
+        <article class="portfolio-card staff-large" data-staff="polarb3ar_3">
+          <img class="staff-avatar" src="assets/polarb3ar_3.jpg" alt="polarb3ar_3">
+          <div class="portfolio-body">
+            <h3>polarb3ar_3</h3>
+            <div class="role-tags"><span class="role-tag">Management</span></div>
+            <p class="small">Management at NexaCore, here to help you</p>
+          </div>
+          <div class="portfolio-actions"><button class="button view-projects" data-staff="polarb3ar_3">View Projects</button></div>
+        </article>
+      </div>
+      <div class="filters" id="staff-clear" style="display:none; justify-content:flex-start">
+        <button class="filter-btn" id="clear-staff">Back to all staff</button>
+      </div>
+      <div id="staff-bio" class="staff-bio" style="display:none">
+        <div class="staff-bio-inner">
+          <img class="bio-avatar" src="assets/logo.png" alt="Staff avatar">
+          <div>
+            <h3 id="bio-name">Name</h3>
+            <div class="role-tags" id="bio-tags"></div>
+            <p class="small" id="bio-text"></p>
+          </div>
+        </div>
+      </div>
+      <nav class="filters" aria-label="Filter by language" id="lang-filters" style="display:none"></nav>
+      <div class="portfolio-grid projects-grid is-hidden" id="projects-grid">
+      <article class="portfolio-card" data-staff="BEST" data-images="assets/logo.png,assets/logo.png,assets/logo.png">
+        <span class="staff-badge"><img src="assets/carrkaiden1212.jpg" alt="BEST"> BEST</span>
+        <img class="portfolio-thumb" src="assets/logo.png" alt="Moderation Bot Suite">
+        <div class="portfolio-body">
+          <h3>Moderation Bot Suite</h3>
+          <p>Role-based actions, logging, and appeals flow with dashboard.</p>
+          <div class="portfolio-tags">
+            <span class="portfolio-tag">Discord bot</span>
+            <span class="portfolio-tag">Node.js</span>
+            <span class="portfolio-tag">Client Request</span>
+          </div>
+        </div>
+        <div class="portfolio-actions">
+          <a class="button" href="https://discord.gg/nexa-core">Discuss on Discord</a>
+        </div>
+      </article>
+
+      <article class="portfolio-card" data-staff="Void" data-images="assets/logo.png,assets/logo.png,assets/logo.png">
+        <span class="staff-badge"><img src="assets/void.jpg" alt="Void"> Void</span>
+        <img class="portfolio-thumb" src="assets/logo.png" alt="Community Website">
+        <div class="portfolio-body">
+          <h3>Community Website</h3>
+          <p>Responsive, branded site with order intake and profile integration.</p>
+          <div class="portfolio-tags">
+            <span class="portfolio-tag">HTML</span>
+            <span class="portfolio-tag">CSS</span>
+            <span class="portfolio-tag">JS</span>
+          </div>
+        </div>
+        <div class="portfolio-actions">
+          <a class="button" href="orders.html">Get Something Like This</a>
+        </div>
+      </article>
+
+      <article class="portfolio-card" data-staff="BEST" data-images="assets/logo.png,assets/logo.png,assets/logo.png">
+        <span class="staff-badge"><img src="assets/carrkaiden1212.jpg" alt="BEST"> BEST</span>
+        <img class="portfolio-thumb" src="assets/logo.png" alt="ER:LC Tools">
+        <div class="portfolio-body">
+          <h3>ER:LC Tools</h3>
+          <p>NexaPatch utilities for stats, logging and server automations.</p>
+          <div class="portfolio-tags">
+            <span class="portfolio-tag">Lua(u)</span>
+            <span class="portfolio-tag">API</span>
+          </div>
+        </div>
+        <div class="portfolio-actions">
+          <a class="button" href="orders.html">Request Integrations</a>
+        </div>
+      </article>
+
+      <article class="portfolio-card" data-staff="Void" data-images="assets/logo.png,assets/logo.png,assets/logo.png">
+        <span class="staff-badge"><img src="assets/void.jpg" alt="Void"> Void</span>
+        <img class="portfolio-thumb" src="assets/logo.png" alt="Dashboard &amp; Auth">
+        <div class="portfolio-body">
+          <h3>Dashboard &amp; Auth</h3>
+          <div class="portfolio-tags">
+            <span class="portfolio-tag">OAuth2</span>
+            <span class="portfolio-tag">Express</span>
+            <span class="portfolio-tag">UI</span>
+          </div>
+        </div>
+        <div class="portfolio-actions">
+          <a class="button" href="https://discord.gg/nexa-core">Talk To Us</a>
+        </div>
+      </article>
+
+      <article class="portfolio-card" data-staff="polarb3ar_3" data-images="assets/logo.png,assets/logo.png,assets/logo.png">
+        <span class="staff-badge"><img src="assets/polarb3ar_3.jpg" alt="polarb3ar_3"> polarb3ar_3</span>
+        <img class="portfolio-thumb" src="assets/logo.png" alt="Branding Pack">
+        <div class="portfolio-body">
+          <h3>Branding Pack</h3>
+          <p>Logos, banners and server visuals for a cohesive identity.</p>
+          <div class="portfolio-tags">
+            <span class="portfolio-tag">Design</span>
+            <span class="portfolio-tag">Branding</span>
+          </div>
+        </div>
+        <div class="portfolio-actions">
+          <a class="button" href="orders.html">Request Design</a>
+        </div>
+      </article>
+
+      <article class="portfolio-card" data-staff="polarb3ar_3" data-images="assets/logo.png,assets/logo.png,assets/logo.png">
+        <span class="staff-badge"><img src="assets/polarb3ar_3.jpg" alt="polarb3ar_3"> polarb3ar_3</span>
+        <img class="portfolio-thumb" src="assets/logo.png" alt="Custom App">
+        <div class="portfolio-body">
+          <h3>Custom App</h3>
+          <p>Lightweight internal tools tailored to your workflow.</p>
+          <div class="portfolio-tags">
+            <span class="portfolio-tag">Electron</span>
+            <span class="portfolio-tag">React</span>
+          </div>
+        </div>
+        <div class="portfolio-actions">
+          <a class="button" href="orders.html">Start a Brief</a>
+        </div>
+      </article>
+    </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="container footer-inner">
+      <div>&copy; <span id="year"></span> NexaCore. All rights reserved.</div>
+      <div class="footer-links"><a href="privacy.html">Privacy</a><a href="tos.html">Terms</a></div>
+    </div>
+    <script>document.getElementById('year').textContent=new Date().getFullYear()</script>
+  </footer>
+  <div id="pm-backdrop" class="pm-backdrop" hidden></div>
+  <div id="pm-modal" class="pm-modal" role="dialog" aria-modal="true" aria-labelledby="pm-title" hidden>
+    <div class="pm-card">
+      <div class="pm-header"><button class="pm-close" aria-label="Close">&times;</button></div>
+      <div class="pm-body">
+        <div class="pm-gallery">
+          <button class="pm-nav pm-prev" aria-label="Previous">&#8249;</button>
+          <img id="pm-image" src="" alt="Project image">
+          <button class="pm-nav pm-next" aria-label="Next">&#8250;</button>
+        </div>
+        <div class="pm-info">
+          <h3 id="pm-title"></h3>
+          <div id="pm-tags" class="portfolio-tags"></div>
+          <p id="pm-desc"></p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script>
+    // Staff view -> click to reveal that staff's projects; language + search filter apply to projects
+    (function(){
+      const projectCards = Array.from(document.querySelectorAll('#projects-grid .portfolio-card'));
+      const search = document.getElementById('portfolio-search');
+      const filterBar = document.getElementById('lang-filters');
+      const staffList = document.getElementById('staff-list');
+      const staffClear = document.getElementById('staff-clear');
+      const clearStaffBtn = document.getElementById('clear-staff');
+      const projectsGrid = document.getElementById('projects-grid');
+      const bioPanel = document.getElementById('staff-bio');
+      const bioName = document.getElementById('bio-name');
+      const bioText = document.getElementById('bio-text');
+      const bioTags = document.getElementById('bio-tags');
+      const bioAvatar = document.querySelector('#staff-bio .bio-avatar');
+
+      // Staff metadata for bio panel
+      const STAFF = {
+        'BEST': {
+          name: 'BEST',
+          avatar: 'assets/carrkaiden1212.jpg',
+          tags: ['HTML','CSS','JavaScript','Lua','Python'],
+          bio: "Hey I'm Kaiden, one of the owners of NexaCore alongside Void. I handle most of the development side of things mainly working with JavaScript, but I know my way around other languages too. I enjoy creating new projects, improving systems, and helping people with whatever they're working on. If you ever need help or just want to talk about an idea, my DMs are always open."
+        },
+        'Void': {
+          name: 'Void',
+          avatar: 'assets/void.jpg',
+          tags: ['JavaScript'],
+          bio: 'Ops lead with JS/Luau dev.'
+        },
+        'polarb3ar_3': {
+          name: 'polarb3ar_3',
+          avatar: 'assets/polarb3ar_3.jpg',
+          tags: ['Management'],
+          bio: 'Management and dashboard features.'
+        }
+      };
+
+      function mapTagToLang(tag){
+        const t = tag.trim().toLowerCase();
+        if ((/(^|\b)js\b/).test(t) || t.endsWith('.js') || ['react','express','electron','discord.js','node.js'].includes(t)) return 'JavaScript';
+        if (t.startsWith('lua')) return 'Lua';
+        if (t === 'html') return 'HTML';
+        if (t === 'css') return 'CSS';
+        return null;
+      }
+
+      const allLangs = new Set();
+      projectCards.forEach(c => {
+        const tags = Array.from(c.querySelectorAll('.portfolio-tag')).map(x=>x.textContent||'');
+        const langs = Array.from(new Set(tags.map(mapTagToLang).filter(Boolean)));
+        c.dataset.langs = langs.join(',');
+        langs.forEach(l => allLangs.add(l));
+      });
+
+      // Build language buttons dynamically
+      const btnAll = document.createElement('button');
+      btnAll.className = 'filter-btn';
+      btnAll.dataset.filter = 'all';
+      btnAll.setAttribute('aria-pressed','true');
+      btnAll.textContent = 'All';
+      filterBar.appendChild(btnAll);
+      Array.from(allLangs).sort().forEach(lang => {
+        const b = document.createElement('button');
+        b.className = 'filter-btn';
+        b.dataset.filter = lang;
+        b.textContent = lang;
+        b.setAttribute('aria-pressed','false');
+        filterBar.appendChild(b);
+      });
+
+      let lang = 'all';
+      let staff = 'all';
+      let query = '';
+      function apply(){
+        const q = (query || '').trim().toLowerCase();
+        projectCards.forEach(function(c){
+          const langs = (c.dataset.langs||'').split(',').filter(Boolean);
+          const langOk = (lang==='all' || langs.indexOf(lang) !== -1);
+          const staffOk = (staff==='all' || (c.dataset.staff===staff));
+          var bodyEl = c.querySelector('.portfolio-body');
+          var bodyText = bodyEl ? bodyEl.innerText : '';
+          const text = (bodyText + ' ' + langs.join(' ') + ' ' + (c.dataset.staff||'')).toLowerCase();
+          const searchOk = !q || text.indexOf(q) !== -1;
+          c.classList.toggle('is-hidden', !(langOk && staffOk && searchOk));
+        });
+        if (staff !== 'all') {
+          if (staffList) staffList.classList.add('is-hidden');
+          if (projectsGrid) projectsGrid.classList.remove('is-hidden');
+          filterBar.style.display='flex';
+          staffClear.style.display='flex';
+          // Render bio
+          const profile = STAFF[staff];
+          if (profile){
+            bioName.textContent = profile.name;
+            bioText.textContent = profile.bio || '';
+            bioAvatar.src = profile.avatar;
+            bioAvatar.alt = profile.name;
+            bioTags.innerHTML = '';
+            profile.tags.forEach((t)=>{
+              const span = document.createElement('span');
+              span.className = 'role-tag';
+              span.textContent = t;
+              bioTags.appendChild(span);
+            });
+            bioPanel.style.display = 'block';
+          } else {
+            bioPanel.style.display = 'none';
+          }
+        } else {
+          if (staffList) staffList.classList.remove('is-hidden');
+          if (projectsGrid) projectsGrid.classList.add('is-hidden');
+          filterBar.style.display='none';
+          staffClear.style.display='none';
+          bioPanel.style.display = 'none';
+        }
+      }
+
+      // Fallback global handler (still used internally)
+      window.showStaff = function(name){
+        staff = name || 'all';
+        apply();
+        var target = (bioPanel && bioPanel.offsetTop) || filterBar.offsetTop || 0;
+        if (typeof window.scrollTo === 'function') {
+          try { window.scrollTo({top: target - 80, behavior:'smooth'}); } catch (e) { window.scrollTo(0, Math.max(0, target - 80)); }
+        }
+      };
+
+      // Unified click handler for the entire staff list area
+      const staffListEl = document.getElementById('staff-list');
+      if (staffListEl) {
+        staffListEl.addEventListener('click', (e) => {
+          const card = e.target.closest('#staff-list [data-staff]');
+          if (card) {
+            const staffName = card.getAttribute('data-staff');
+            if (staffName) {
+              window.showStaff(staffName);
+            }
+          }
+        });
+        // Keyboard access on staff cards
+        staffListEl.querySelectorAll('[data-staff]').forEach(el=>{
+          el.setAttribute('tabindex','0');
+          el.setAttribute('role','button');
+          el.addEventListener('keydown', (e)=>{
+            if(e.key==='Enter' || e.key===' '){
+              e.preventDefault();
+              e.currentTarget.click();
+            }
+          });
+        });
+      }
+
+      clearStaffBtn.addEventListener('click', ()=>{ staff = 'all'; apply(); window.scrollTo({top: staffList.offsetTop - 60, behavior:'smooth'}); });
+
+      filterBar.addEventListener('click', (e)=>{
+        const b = e.target.closest('.filter-btn'); if (!b) return;
+        lang = b.dataset.filter;
+        Array.from(filterBar.querySelectorAll('.filter-btn')).forEach(x=>x.setAttribute('aria-pressed', String(x===b)));
+        apply();
+      });
+      if (search) search.addEventListener('input', (e)=>{ query = e.target.value; apply(); });
+
+      // Condense language tags on the staff list only: show first 2, then '...'
+      (function condenseRoleTags(){
+        document.querySelectorAll('#staff-list .role-tags').forEach(group=>{
+          const chips = Array.from(group.querySelectorAll('.role-tag'));
+          if (chips.length > 2){
+            chips.slice(2).forEach(el=>el.remove());
+            const more = document.createElement('span');
+            more.className = 'role-tag';
+            more.textContent = '...';
+            group.appendChild(more);
+          }
+        });
+      })();
+
+      // Make project cards open modal with gallery
+      (function setupProjectModal(){
+        const cards = Array.from(document.querySelectorAll('#projects-grid .portfolio-card'));
+        const modal = document.getElementById('pm-modal');
+        const backdrop = document.getElementById('pm-backdrop');
+        const imgEl = document.getElementById('pm-image');
+        const titleEl = document.getElementById('pm-title');
+        const tagsEl = document.getElementById('pm-tags');
+        const descEl = document.getElementById('pm-desc');
+        const prevBtn = modal.querySelector('.pm-prev');
+        const nextBtn = modal.querySelector('.pm-next');
+        const closeBtn = modal.querySelector('.pm-close');
+        let images = []; let index = 0;
+
+        function open(card){
+          var h3 = card.querySelector('h3');
+          titleEl.textContent = h3 ? (h3.textContent || 'Project') : 'Project';
+          var p = card.querySelector('.portfolio-body p');
+          descEl.textContent = p ? (p.textContent || '') : '';
+          tagsEl.innerHTML = '';
+          card.querySelectorAll('.portfolio-tag').forEach(t=>{
+            const span = document.createElement('span'); span.className='portfolio-tag'; span.textContent=t.textContent; tagsEl.appendChild(span);
+          });
+          const fromData = (card.dataset.images||'').split(',').map(function(s){ return s.trim(); }).filter(Boolean);
+          var thumbEl = card.querySelector('.portfolio-thumb');
+          const thumb = thumbEl ? thumbEl.getAttribute('src') : '';
+          images = fromData.length ? fromData : (thumb ? [thumb] : []);
+          index = 0; render();
+          backdrop.hidden=false; modal.hidden=false; requestAnimationFrame(()=>{ backdrop.classList.add('is-open'); modal.classList.add('is-open'); });
+          document.body.style.overflow='hidden';
+        }
+        function close(){ backdrop.classList.remove('is-open'); modal.classList.remove('is-open'); setTimeout(()=>{ backdrop.hidden=true; modal.hidden=true; document.body.style.overflow=''; },150); }
+        function render(){ if(!images.length) return; imgEl.src = images[index]; }
+        function next(){ if(!images.length) return; index=(index+1)%images.length; render(); }
+        function prev(){ if(!images.length) return; index=(index-1+images.length)%images.length; render(); }
+
+        cards.forEach(c=>{
+          c.style.cursor='pointer';
+          c.addEventListener('click', (e)=>{
+            if (e.target.closest('a,button')) return;
+            open(c);
+          });
+        });
+        prevBtn.addEventListener('click', prev); nextBtn.addEventListener('click', next); closeBtn.addEventListener('click', close); backdrop.addEventListener('click', close);
+        document.addEventListener('keydown', (e)=>{ if(modal.hidden) return; if(e.key==='Escape') { e.preventDefault(); close(); } else if(e.key==='ArrowRight'){ next(); } else if(e.key==='ArrowLeft'){ prev(); } });
+      })();
+
+      // initial view
+      apply();
+    })();
+  </script>
+</body>
+</html>
