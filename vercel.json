@@ -1,16 +1,12 @@
 {
-  "version": 2,
-  "cleanUrls": true,
-  "trailingSlash": false,
-  "builds": [
-    { "src": "api/*.js", "use": "@vercel/node@2.15.10" },
-    { "src": "**/*.html", "use": "@vercel/static" },
-    { "src": "assets/**", "use": "@vercel/static" },
-    { "src": "nexapatch/assets/**", "use": "@vercel/static" },
-    { "src": "nexapatch/**/*.html", "use": "@vercel/static" }
-  ],
-  "rewrites": [
-    { "source": "/api/discord-callback-nexapatch", "destination": "/api/discord-callback-nexapatch.js" },
-    { "source": "/api/discord-callback-nexapatch/", "destination": "/api/discord-callback-nexapatch.js" }
-  ]
+"version": 2,
+"cleanUrls": true,
+"trailingSlash": false,
+"rewrites": [
+{ "source": "/api/discord-callback-nexapatch", "destination": "/api/discord-callback-nexapatch.js" },
+{ "source": "/api/discord-callback-nexapatch/", "destination": "/api/discord-callback-nexapatch.js" }
+],
+"functions": {
+"api/*.js": { "runtime": "nodejs20.x" }
+}
 }
