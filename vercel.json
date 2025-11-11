@@ -9,7 +9,8 @@
     { "src": "nexapatch/assets/**", "use": "@vercel/static" },
     { "src": "nexapatch/**/*.html", "use": "@vercel/static" }
   ],
-  "routes": [
-    { "src": "/api/discord-callback-nexapatch/?", "dest": "/api/discord-callback-nexapatch.js" }
+  "rewrites": [
+    { "source": "/api/discord-callback-nexapatch", "destination": "/api/discord-callback-nexapatch.js" },
+    { "source": "/api/discord-callback-nexapatch/", "destination": "/api/discord-callback-nexapatch.js" }
   ]
 }
