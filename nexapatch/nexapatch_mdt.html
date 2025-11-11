@@ -1,0 +1,181 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>NexaPatch • MDT</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="icon" href="assets/favicon.ico">
+  <link rel="stylesheet" href="assets/nexapatch_dashboard.css">
+</head>
+<body>
+<div class="layout">
+  <!-- Sidebar -->
+  <aside class="sidebar">
+    <div class="brand-wrap">
+      <img src="assets/LOGO_NexaPatch.png" alt="NexaPatch logo" class="logo" onerror="this.style.display='none'">
+      <div class="brand-text">
+        <span class="brand-title">NexaPatch</span>
+        <span class="brand-sub">by NexaCore</span>
+      </div>
+    </div>
+
+    <nav class="nav">
+      <a href="nexapatch_dashboard.html" class="nav-link">
+        <span class="dot"></span> Overview
+      </a>
+      <a href="nexapatch_logs.html" class="nav-link">
+        <span class="dot"></span> Live Logs
+      </a>
+      <a href="nexapatch_players.html" class="nav-link">
+        <span class="dot"></span> Players & Staff
+      </a>
+      <a href="nexapatch_automations.html" class="nav-link">
+        <span class="dot"></span> Automations
+      </a>
+      <a href="nexapatch_mdt.html" class="nav-link active">
+        <span class="dot"></span> MDT
+      </a>
+      <a href="nexapatch_settings.html" class="nav-link">
+        <span class="dot"></span> Settings
+      </a>
+    </nav>
+
+    <div class="sidebar-footer">
+      <div class="status-pill online"></div>
+      <div class="status-text">
+        <div>NexaPatch Status</div>
+        <small>MDT Online</small>
+      </div>
+    </div>
+  </aside>
+
+  <!-- Main -->
+  <main class="main">
+    <header class="topbar">
+      <div>
+        <h1>MDT</h1>
+        <p class="muted">
+          A unified in-browser MDT for your ER:LC units, dispatch, and staff — powered by NexaPatch.
+        </p>
+      </div>
+      <div class="top-actions">
+        <div class="select-wrap">
+          <label for="mdt-server">Server</label>
+          <select id="mdt-server">
+            <option>Liberty County RP • Main</option>
+            <option>State RP • Training</option>
+          </select>
+        </div>
+        <button class="btn-primary">Open Dispatch View</button>
+      </div>
+    </header>
+
+    <!-- Top: Quick MDT stats -->
+    <section class="grid stats">
+      <div class="card stat">
+        <div class="stat-label">Units On Duty</div>
+        <div class="stat-value">8</div>
+        <div class="stat-sub">LEO • FD • DOT</div>
+      </div>
+      <div class="card stat">
+        <div class="stat-label">Active Calls</div>
+        <div class="stat-value">3</div>
+        <div class="stat-sub">2 Priority • 1 Routine</div>
+      </div>
+      <div class="card stat">
+        <div class="stat-label">Available Units</div>
+        <div class="stat-value">5</div>
+        <div class="stat-sub">Ready for dispatch</div>
+      </div>
+      <div class="card stat">
+        <div class="stat-label">Linked Profiles</div>
+        <div class="stat-value">68</div>
+        <div class="stat-sub">Discord ↔ Roblox synced</div>
+      </div>
+    </section>
+
+    <!-- Middle: Units + Calls -->
+    <section class="grid middle">
+      <!-- Units table -->
+      <div class="card">
+        <div class="card-header">
+          <h2>Active Units</h2>
+          <span class="tag">Live MDT View</span>
+        </div>
+        <table class="table">
+          <thead>
+          <tr>
+            <th>Unit</th>
+            <th>Identifier</th>
+            <th>Status</th>
+            <th>Location</th>
+            <th>Call</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr>
+            <td>Void</td>
+            <td>1-L-10</td>
+            <td><span class="pill pill-ok">10-8</span></td>
+            <td>Downtown</td>
+            <td>-</td>
+          </tr>
+          <tr>
+            <td>Kaiden</td>
+            <td>2-K-21</td>
+            <td><span class="pill pill-ok">10-97</span></td>
+            <td>Highway 121</td>
+            <td>#2304</td>
+          </tr>
+          <tr>
+            <td>Nova</td>
+            <td>3-A-12</td>
+            <td><span class="pill pill-warn">10-6</span></td>
+            <td>Station</td>
+            <td>-</td>
+          </tr>
+          <tr>
+            <td>Medic01</td>
+            <td>MED-3</td>
+            <td><span class="pill pill-ok">10-8</span></td>
+            <td>Hospital</td>
+            <td>-</td>
+          </tr>
+          </tbody>
+        </table>
+        <button class="btn-ghost">View full unit board</button>
+      </div>
+
+      <!-- Active calls -->
+      <div class="card">
+        <div class="card-header">
+          <h2>Active Calls</h2>
+          <span class="tag">Dispatch Queue</span>
+        </div>
+        <div class="logs">
+          <div class="log-item">
+            <span class="log-label call">PRIORITY</span>
+            <span class="log-text">
+              #2304 • Armed robbery at Bank • Units: 2-K-21, 1-L-10
+            </span>
+            <span class="log-time">5m</span>
+          </div>
+          <div class="log-item">
+            <span class="log-label call">911</span>
+            <span class="log-text">
+              #2305 • MVA with injuries on Hwy 15 • MED-3 assigned
+            </span>
+            <span class="log-time">2m</span>
+          </div>
+          <div class="log-item">
+            <span class="log-label call">911</span>
+            <span class="log-text">
+              #2306 • Noise complaint • Awaiting unit
+            </span>
+            <span class="log-time">Just now</span>
+          </div>
+        </div>
+        <button class="btn-secondary">Open call manager</button>
+        <p class="hint">
+          In production, this connects directly to NexaPatch events & allows dispatchers to attach / clear units in
+

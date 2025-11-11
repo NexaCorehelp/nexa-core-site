@@ -1,0 +1,126 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>NexaPatch • Automations</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="icon" href="assets/favicon.ico">
+  <link rel="stylesheet" href="assets/nexapatch_dashboard.css">
+</head>
+<body>
+<div class="layout">
+  <aside class="sidebar">
+    <div class="brand-wrap">
+      <img src="assets/LOGO_NexaPatch.png" alt="NexaPatch logo" class="logo" onerror="this.style.display='none'">
+      <div class="brand-text">
+        <span class="brand-title">NexaPatch</span>
+        <span class="brand-sub">by NexaCore</span>
+      </div>
+    </div>
+    <nav class="nav">
+      <a href="nexapatch_dashboard.html" class="nav-link">
+        <span class="dot"></span> Overview
+      </a>
+      <a href="nexapatch_logs.html" class="nav-link">
+        <span class="dot"></span> Live Logs
+      </a>
+      <a href="nexapatch_players.html" class="nav-link">
+        <span class="dot"></span> Players & Staff
+      </a>
+      <a href="nexapatch_automations.html" class="nav-link active">
+        <span class="dot"></span> Automations
+      </a>
+      <a href="nexapatch_mdt.html" class="nav-link">
+        <span class="dot"></span> MDT
+      </a>
+      <a href="nexapatch_settings.html" class="nav-link">
+        <span class="dot"></span> Settings
+      </a>
+    </nav>
+    <div class="sidebar-footer">
+      <div class="status-pill online"></div>
+      <div class="status-text">
+        <div>NexaPatch Status</div>
+        <small>Rules active</small>
+      </div>
+    </div>
+  </aside>
+
+  <main class="main">
+    <header class="topbar">
+      <div>
+        <h1>Automations</h1>
+        <p class="muted">Create rules that react to ER:LC events and sync them with Discord.</p>
+      </div>
+      <div class="top-actions">
+        <button class="btn-primary">+ New Automation</button>
+      </div>
+    </header>
+
+    <section class="grid middle">
+      <div class="card">
+        <div class="card-header">
+          <h2>Active Automations</h2>
+          <span class="tag">Example Rules</span>
+        </div>
+        <ul class="list">
+          <li>
+            <span>When a 911 call is created</span>
+            <span class="pill pill-ok">Send to #erlc-calls</span>
+          </li>
+          <li>
+            <span>When staff goes /duty on</span>
+            <span class="pill pill-ok">Log to #staff-logs</span>
+          </li>
+          <li>
+            <span>When player hits 3 warnings</span>
+            <span class="pill pill-warn">Flag for review</span>
+          </li>
+          <li>
+            <span>When priority starts</span>
+            <span class="pill pill-ok">Post banner + ping role</span>
+          </li>
+        </ul>
+        <button class="btn-secondary">Manage automations</button>
+      </div>
+
+      <div class="card">
+        <div class="card-header">
+          <h2>New Automation Template</h2>
+          <span class="tag">No-code style</span>
+        </div>
+        <p class="muted" style="font-size:10px;">
+          Later you can wire this to an internal builder. For now, it’s a visual concept.
+        </p>
+        <ul class="list">
+          <li>
+            <span>IF</span>
+            <span>Event: <b>Arrest Created</b></span>
+          </li>
+          <li>
+            <span>AND</span>
+            <span>Charge time ≥ <b>600s</b></span>
+          </li>
+          <li>
+            <span>THEN</span>
+            <span>Send embed to <b>#erlc-arrests</b> & log to DB</span>
+          </li>
+        </ul>
+        <button class="btn-outline">Save as rule</button>
+      </div>
+    </section>
+  </main>
+</div>
+<script src="assets/context.js"></script>
+<script src="assets/sidebar_user.js"></script>
+<script>
+(function(){
+  if (window.NexaPatchContext && NexaPatchContext.ensureServerOrRedirect("nexapatch_server_select.html")) {
+    var sel = document.getElementById("server-select");
+    if (sel) NexaPatchContext.bindSelect(sel);
+  }
+})();
+</script>
+</body>
+</html>
+

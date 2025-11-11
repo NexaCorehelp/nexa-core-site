@@ -1,0 +1,170 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>NexaPatch • Players & Staff</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="icon" href="assets/favicon.ico">
+  <link rel="stylesheet" href="assets/nexapatch_dashboard.css">
+</head>
+<body>
+<div class="layout">
+  <aside class="sidebar">
+    <div class="brand-wrap">
+      <img src="assets/LOGO_NexaPatch.png" alt="NexaPatch logo" class="logo" onerror="this.style.display='none'">
+      <div class="brand-text">
+        <span class="brand-title">NexaPatch</span>
+        <span class="brand-sub">by NexaCore</span>
+      </div>
+    </div>
+    <nav class="nav">
+      <a href="nexapatch_dashboard.html" class="nav-link">
+        <span class="dot"></span> Overview
+      </a>
+      <a href="nexapatch_logs.html" class="nav-link">
+        <span class="dot"></span> Live Logs
+      </a>
+      <a href="nexapatch_players.html" class="nav-link active">
+        <span class="dot"></span> Players & Staff
+      </a>
+      <a href="nexapatch_automations.html" class="nav-link">
+        <span class="dot"></span> Automations
+      </a>
+      <a href="nexapatch_mdt.html" class="nav-link">
+        <span class="dot"></span> MDT
+      </a>
+      <a href="nexapatch_settings.html" class="nav-link">
+        <span class="dot"></span> Settings
+      </a>
+    </nav>
+    <div class="sidebar-footer">
+      <div class="status-pill online"></div>
+      <div class="status-text">
+        <div>NexaPatch Status</div>
+        <small>Syncing players</small>
+      </div>
+    </div>
+  </aside>
+
+  <main class="main">
+    <header class="topbar">
+      <div>
+        <h1>Players & Staff</h1>
+        <p class="muted">View who’s in-game, synced accounts, and on-duty staff at a glance.</p>
+      </div>
+      <div class="top-actions">
+        <div class="select-wrap">
+          <label for="player-server">Server</label>
+          <select id="player-server">
+            <option>Liberty County RP • Main</option>
+            <option>State RP • Training</option>
+          </select>
+        </div>
+      </div>
+    </header>
+
+    <section class="grid stats">
+      <div class="card stat">
+        <div class="stat-label">Live Players</div>
+        <div class="stat-value">24</div>
+        <div class="stat-sub">Auto-updated</div>
+      </div>
+      <div class="card stat">
+        <div class="stat-label">Linked Accounts</div>
+        <div class="stat-value">68</div>
+        <div class="stat-sub">Discord ↔ Roblox</div>
+      </div>
+      <div class="card stat">
+        <div class="stat-label">On-Duty Staff</div>
+        <div class="stat-value">5</div>
+        <div class="stat-sub">Using /duty system</div>
+      </div>
+      <div class="card stat">
+        <div class="stat-label">Open Mod Calls</div>
+        <div class="stat-value">2</div>
+        <div class="stat-sub">Needs response</div>
+      </div>
+    </section>
+
+    <section class="grid middle">
+      <div class="card">
+        <div class="card-header">
+          <h2>Current Players</h2>
+          <span class="tag">Live Snapshot</span>
+        </div>
+        <table class="table">
+          <thead>
+          <tr>
+            <th>Player</th>
+            <th>Team</th>
+            <th>Session</th>
+            <th>Linked</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr>
+            <td>LC_Officer01</td>
+            <td>LEO</td>
+            <td>42m</td>
+            <td><span class="pill pill-ok">Yes</span></td>
+          </tr>
+          <tr>
+            <td>MedicNova</td>
+            <td>FD</td>
+            <td>31m</td>
+            <td><span class="pill pill-ok">Yes</span></td>
+          </tr>
+          <tr>
+            <td>NightFury_23</td>
+            <td>Civ</td>
+            <td>19m</td>
+            <td><span class="pill pill-warn">Unlinked</span></td>
+          </tr>
+          <tr>
+            <td>K9_Riley</td>
+            <td>LEO</td>
+            <td>8m</td>
+            <td><span class="pill pill-ok">Yes</span></td>
+          </tr>
+          </tbody>
+        </table>
+        <button class="btn-ghost">View full player list</button>
+      </div>
+
+      <div class="card">
+        <div class="card-header">
+          <h2>On-Duty Staff</h2>
+          <span class="tag">/duty Integration</span>
+        </div>
+        <ul class="list">
+          <li>
+            <span>Void</span>
+            <span class="pill pill-ok">On duty • 1h 12m</span>
+          </li>
+          <li>
+            <span>Kaiden</span>
+            <span class="pill pill-ok">On duty • 54m</span>
+          </li>
+          <li>
+            <span>Nova</span>
+            <span class="pill pill-ok">On duty • 32m</span>
+          </li>
+        </ul>
+        <button class="btn-secondary">Open staff panel</button>
+        <p class="hint">Later you can hook this into your actual /duty and shift logs.</p>
+      </div>
+    </section>
+  </main>
+</div>
+<script src="assets/context.js"></script>
+<script>
+(function(){
+  if (window.NexaPatchContext && NexaPatchContext.ensureServerOrRedirect("nexapatch_server_select.html")) {
+    var sel = document.getElementById("server-select");
+    if (sel) NexaPatchContext.bindSelect(sel);
+  }
+})();
+</script>
+</body>
+</html>
+

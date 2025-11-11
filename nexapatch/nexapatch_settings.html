@@ -1,0 +1,232 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>NexaPatch — Settings</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="icon" href="assets/favicon.ico">
+  <link rel="stylesheet" href="assets/nexapatch_dashboard.css">
+</head>
+<body>
+<div class="layout">
+  <aside class="sidebar">
+    <div class="brand-wrap">
+      <img src="assets/LOGO_NexaPatch.png" alt="NexaPatch logo" class="logo" onerror="this.style.display='none'">
+      <div class="brand-text">
+        <span class="brand-title">NexaPatch</span>
+        <span class="brand-sub">by NexaCore</span>
+      </div>
+    </div>
+    <nav class="nav">
+      <a href="nexapatch_dashboard.html" class="nav-link">
+        <span class="dot"></span> Overview
+      </a>
+      
+      <a href="nexapatch_logs.html" class="nav-link">
+        <span class="dot"></span> Live Logs
+      </a>
+      <a href="nexapatch_players.html" class="nav-link">
+        <span class="dot"></span> Players & Staff
+      </a>
+      <a href="nexapatch_automations.html" class="nav-link">
+        <span class="dot"></span> Automations
+      </a>
+      <a href="nexapatch_mdt.html" class="nav-link">
+        <span class="dot"></span> MDT
+      </a>
+      <a href="nexapatch_settings.html" class="nav-link">
+        <span class="dot"></span> Settings
+      </a>
+    </nav>
+    <div class="sidebar-footer">
+      <div class="status-pill online"></div>
+      <div class="status-text">
+        <div>NexaPatch Status</div>
+        <small>Operational</small>
+      </div>
+    </div>
+  </aside>
+
+  <main class="main">
+    <header class="topbar">
+      <div>
+        <h1>Settings</h1>
+        <p class="muted">Configure roles, channels and dashboard preferences.</p>
+      </div>
+      <div class="top-actions">
+        <button class="btn-primary">+ Link New Server</button>
+      </div>
+    </header>
+
+    
+
+    <section class="grid middle">
+      <div class="card" style="display:none">
+        <div class="card-header">
+          <h2>Server List</h2>
+          <span class="tag">ER:LC Private Servers</span>
+        </div>
+        <table class="table">
+          <thead>
+          <tr>
+            <th>Name</th>
+            <th>Region</th>
+            <th>Status</th>
+            <th>Players</th>
+            <th>Linked Guild</th>
+          </tr>
+          </thead> 
+          <tbody>
+          <tr>
+            <td>Liberty County RP • Main</td>
+            <td>EU</td>
+            <td><span class="pill pill-ok">Online</span></td>
+            <td>24 / 30</td>
+            <td>@NexaCore Main</td>
+          </tr>
+          <tr>
+            <td>State RP • Training</td>
+            <td>US</td>
+            <td><span class="pill pill-warn">Idle</span></td>
+            <td>0 / 30</td>
+            <td>@NexaCore Training</td>
+          </tr>
+          </tbody>
+        </table>
+        <button class="btn-ghost">View connection details</button>
+      </div>
+
+      <div class="card" style="display:none">
+        <div class="card-header">
+          <h2>Link New Server</h2>
+          <span class="tag">Setup Wizard</span>
+        </div>
+        <p class="muted" style="font-size:10px;">
+          Use this information when generating your ER:LC API key and configuring NexaPatch.
+        </p>
+        <ul class="list">
+          <li>
+            <span>1. Generate Private Server API key</span>
+            <span class="pill pill-ok">From ER:LC panel</span>
+          </li>
+          <li>
+            <span>2. Paste key into NexaPatch</span>
+            <span class="pill pill-ok">Stored securely</span>
+          </li>
+          <li>
+            <span>3. Select log & staff channels</span>
+            <span class="pill pill-warn">Per server</span>
+          </li>
+          <li>
+            <span>4. Test connection</span>
+            <span class="pill pill-ok">1-click test</span>
+          </li>
+        </ul>
+        <button class="btn-secondary">Start linking</button>
+      </div>
+
+      <div class="card">
+        <div class="card-header">
+          <h2>Roles Setup</h2>
+          <span class="tag">Setup</span>
+        </div>
+        <p class="muted" style="font-size:10px;">
+          Pick the Discord roles that control access to NexaPatch features.
+        </p>
+        <ul class="list">
+          <li>
+            <span>Owner Role</span>
+            <span class="bubble-select">
+              <select id="role-owner" aria-label="Owner role"></select>
+            </span>
+          </li>
+          <li>
+            <span>Admin role</span>
+            <span class="bubble-select">
+              <select id="role-admin" aria-label="Admin role"></select>
+            </span>
+          </li>
+          <li>
+            <span>Moderator role</span>
+            <span class="bubble-select">
+              <select id="role-mod" aria-label="Moderator role"></select>
+            </span>
+          </li>
+          <li>
+            <span>Staff role</span>
+            <span class="bubble-select">
+              <select id="role-staff" aria-label="Staff role"></select>
+            </span>
+          </li>
+        </ul>
+        <button class="btn-secondary">Save roles</button>
+      </div>
+
+      <div class="card">
+        <div class="card-header">
+          <h2>Channels Setup</h2>
+          <span class="tag">Setup Wizard</span>
+        </div>
+        <p class="muted" style="font-size:10px;">
+          Select channels for logs, duty updates, and alerts.
+        </p>
+        <ul class="list">
+          <li>
+            <span>1. Select log channel</span>
+            <span class="pill pill-ok">Required</span>
+          </li>
+          <li>
+            <span>2. Select staff duty channel</span>
+            <span class="pill pill-warn">Recommended</span>
+          </li>
+          <li>
+            <span>3. Select alerts/911 channel</span>
+            <span class="pill pill-warn">Per server</span>
+          </li>
+          <li>
+            <span>4. Send test message</span>
+            <span class="pill pill-ok">1-click test</span>
+          </li>
+        </ul>
+        <button class="btn-secondary">Configure channels</button>
+      </div>
+    </section>
+  </main>
+</div>
+<script>
+  (function populateRoleDropdowns(){
+    const selects = [
+      { id: 'role-owner' },
+      { id: 'role-admin' },
+      { id: 'role-mod' },
+      { id: 'role-staff' }
+    ];
+    // TODO: Replace with live fetch of guild roles via your API.
+    const sampleRoles = [
+      { id: '', name: 'Select role…' },
+      { id: 'owner', name: 'Owner' },
+      { id: 'admin', name: 'Admin' },
+      { id: 'moderator', name: 'Moderator' },
+      { id: 'staff', name: 'Staff' },
+      { id: 'leo', name: 'LEO' },
+      { id: 'fd', name: 'Fire/EMS' },
+      { id: 'civ', name: 'Civilian' }
+    ];
+    selects.forEach(({id}) => {
+      const el = document.getElementById(id);
+      if (!el) return;
+      el.innerHTML = '';
+      for (const r of sampleRoles) {
+        const opt = document.createElement('option');
+        opt.value = r.id;
+        opt.textContent = r.name;
+        if (!r.id) { opt.disabled = true; opt.selected = true; opt.hidden = true; }
+        el.appendChild(opt);
+      }
+    });
+  })();
+</script>
+<script src="assets/context.js"></script><script>(function(){ if (window.NexaPatchContext && NexaPatchContext.ensureServerOrRedirect("nexapatch_server_select.html")) { var sel = document.getElementById("server-select"); if (sel) NexaPatchContext.bindSelect(sel); }})();</script><script src="assets/sidebar_user.js"></script></body>
+</html>
+
+

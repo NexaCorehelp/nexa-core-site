@@ -2,107 +2,74 @@
 <html lang="en">
 <head>
   <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width,initial-scale=1">
-  <title>NexaPatch Discord Bot</title>
-  <link rel="icon" href="../assets/favicon.ico">
-  <link rel="stylesheet" href="nexapatch.css">
-  <link rel="stylesheet" href="../assets/style.css">
-  <style>
-    body {
-      background: linear-gradient(135deg, #7b2ff2 0%, #f357a8 100%);
-      color: #fff;
-      min-height: 100vh;
-      margin: 0;
-      font-family: 'Segoe UI', Arial, sans-serif;
-    }
-    .nexapatch-container {
-      max-width: 600px;
-      margin: 60px auto;
-      background: rgba(35, 39, 47, 0.92);
-      border-radius: 18px;
-      box-shadow: 0 2px 16px rgba(0,0,0,0.18);
-      padding: 40px 32px 32px 32px;
-      text-align: center;
-    }
-    .nexapatch-logo {
-      width: 80px;
-      height: 80px;
-      margin-bottom: 18px;
-      border-radius: 16px;
-      box-shadow: 0 2px 12px rgba(0,0,0,0.18);
-      background: #fff2;
-      object-fit: cover;
-    }
-    .nexapatch-title {
-      font-size: 2.2rem;
-      font-weight: 700;
-      margin-bottom: 10px;
-      color: #e0c800;
-    }
-    .nexapatch-desc {
-      font-size: 1.1rem;
-      color: #fff;
-      margin-bottom: 24px;
-    }
-    .nexapatch-btn {
-      display: inline-block;
-      background: #5865F2;
-      color: #fff;
-      padding: 12px 28px;
-      border-radius: 8px;
-      font-size: 1.1rem;
-      font-weight: 600;
-      text-decoration: none;
-      margin: 12px 0 0 0;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.10);
-      transition: background 0.2s;
-    }
-    .nexapatch-btn:hover {
-      background: #4752c4;
-    }
-    .nexapatch-section {
-      margin-top: 36px;
-      text-align: left;
-    }
-    .nexapatch-section h2 {
-      color: #e0c800;
-      font-size: 1.3rem;
-      margin-bottom: 10px;
-    }
-    .nexapatch-section ul {
-      padding-left: 22px;
-      margin-bottom: 18px;
-    }
-    .nexapatch-section li {
-      margin-bottom: 7px;
-      color: #fff;
-    }
-  </style>
+  <title>NexaPatch • Integrate ER:LC Smarter</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="icon" href="assets/favicon.ico">
+  <link rel="stylesheet" href="assets/nexapatch.css">
 </head>
 <body>
-  <div class="nexapatch-container">
-    <img src="../assets/logo.png" alt="NexaPatch Logo" class="nexapatch-logo">
-    <div class="nexapatch-title">NexaPatch Discord Bot</div>
-    <div class="nexapatch-desc">
-      NexaPatch is a Discord bot aimed towards ER:LC server owners, this bot used API to help mange ER:LC roleplay servers. Some features are: shift management, calls updates and more in the works. <br>
-      <strong>Easy to use, secure, and always up-to-date.</strong>
+  <header class="hero">
+    <div class="overlay"></div>
+    <div class="hero-content">
+      <img src="assets/LOGO_NexaPatch.png" alt="NexaPatch Logo" class="logo" onerror="this.style.display='none'">
+      <h1>Meet NexaPatch</h1>
+      <p>The smarter, faster, and more connected way to link your <strong>ER:LC Private Server</strong> with Discord.</p>
+      <a href="nexapatch_server_select.html" class="btn-primary">Open NexaPatch Dashboard</a>
     </div>
-  <a href="https://discord.com/oauth2/authorize?client_id=1401728693017120899&response_type=code&scope=identify%20guilds&redirect_uri=https%3A%2F%2Fnexa-core.net%2Fapi%2Fdiscord-callback-nexapatch" class="nexapatch-btn" target="_blank" rel="noopener">Login With Discord</a>
-  <a href="https://discord.com/oauth2/authorize?client_id=1401728693017120899&response_type=code&scope=identify%20guilds&redirect_uri=https%3A%2F%2Fnexa-core.net%2Fapi%2Fdiscord-callback-nexapatch" class="nexapatch-btn" target="_blank" rel="noopener">Login With Discord</a>
-    <div class="nexapatch-section">
-      <h2>Features</h2>
-      <ul>
-        <li>Automated patch verification</li>
-        <li>Role-based access control</li>
-        <li>Customizable server settings</li>
-        <li>Real-time notifications</li>
-      </ul>
-      <h2>Get Started</h2>
-      <ul>
-        <li>Invite NexaPatch to your server</li>
-        <li>Configure your verification settings</li>
-      </ul>
-    </div>
-  </div>
+  </header>
+
+  <main class="content">
+    <section class="features">
+      <h2>Why Choose NexaPatch?</h2>
+      <div class="grid">
+        <div class="card">
+          <h3>🔗 Live ER:LC Sync</h3>
+          <p>Connect your private server directly with Discord. View players, logs, and alerts instantly.</p>
+        </div>
+        <div class="card">
+          <h3>📟 Duty System</h3>
+          <p>Track on-duty staff, sync shifts, and manage patrols without spreadsheets or manual tracking.</p>
+        </div>
+        <div class="card">
+          <h3>⚙️ Automation</h3>
+          <p>Automate common actions: announcements, 911 alerts, and staff pings triggered by in-game events.</p>
+        </div>
+        <div class="card">
+          <h3>🧠 Custom MDT</h3>
+          <p>Access a modern MDT for calls, units, and player data — all inside your NexaPatch dashboard.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="cta">
+      <h2>Ready to Connect?</h2>
+      <p>Start by adding NexaPatch to your Discord server.  
+      Once connected, you’ll unlock your personalized dashboard and MDT instantly.</p>
+      <a id="invite-bot"
+         href="https://discord.com/oauth2/authorize?client_id=1401728693017120899&scope=bot+applications.commands&permissions=8"
+         target="_blank" rel="noopener"
+         class="btn-primary large">Add to Discord</a>
+    </section>
+  </main>
+
+  <footer>
+    <p>© 2025 NexaCore. All rights reserved.  
+      <a href="https://nexa-core.net">Visit NexaCore</a>
+    </p>
+  </footer>
+  <script>
+    (function(){
+      const inviteBtn = document.getElementById('invite-bot');
+      if (!inviteBtn) return;
+      inviteBtn.addEventListener('click', function(e){
+        // Let the browser open the invite in a new tab/window
+        // Then, gently redirect this page to the dashboard.
+        // This works without needing a Discord redirect_uri.
+        setTimeout(function(){
+          window.location.href = 'nexapatch_server_select.html';
+        }, 800);
+      });
+    })();
+  </script>
 </body>
 </html>

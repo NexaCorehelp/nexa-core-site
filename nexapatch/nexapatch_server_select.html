@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>NexaPatch — Select Server</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="icon" href="assets/favicon.ico">
+  <link rel="stylesheet" href="assets/nexapatch_dashboard.css">
+</head>
+<body>
+<div class="layout">
+  <aside class="sidebar">
+    <div class="brand-wrap">
+      <img src="assets/LOGO_NexaPatch.png" alt="NexaPatch logo" class="logo" onerror="this.style.display='none'">
+      <div class="brand-text">
+        <span class="brand-title">NexaPatch</span>
+        <span class="brand-sub">by NexaCore</span>
+      </div>
+    </div>
+    <nav class="nav">
+      <a href="nexapatch_server_select.html" class="nav-link active">
+        <span class="dot"></span> Select Server
+      </a>
+    </nav>
+    <div class="sidebar-footer">
+      <div class="status-pill online"></div>
+      <div class="status-text">
+        <div>NexaPatch Status</div>
+        <small>Operational</small>
+      </div>
+    </div>
+  </aside>
+
+  <main class="main">
+    <header class="topbar">
+      <div>
+        <h1>Select a Server</h1>
+        <p class="muted">Choose the server context before opening the dashboard.</p>
+      </div>
+    </header>
+
+    <section class="grid middle">
+      <div class="card">
+        <div class="card-header">
+          <h2>Your Servers</h2>
+          <span class="tag">Context</span>
+        </div>
+        <div class="actions" id="server-list" style="margin-top:6px"></div>
+        <p class="hint">You can change the selection at any time from the page header.</p>
+        <button id="continue" class="btn-secondary">Continue to Dashboard</button>
+      </div>
+    </section>
+  </main>
+</div>
+
+<script src="assets/context.js"></script>
+<script src="assets/sidebar_user.js"></script>
+<script>
+  (function(){
+    const list = document.getElementById('server-list');
+    const btn = document.getElementById('continue');
+    const servers = NexaPatchContext.getServers();
+    const current = NexaPatchContext.getSelectedServer();
+
+    function render(){
+      list.innerHTML = '';
+      servers.forEach(s => {
+        const item = document.createElement('button');
+        item.className = 'btn-outline';
+        item.textContent = s.name;
+        item.style.justifyContent = 'space-between';
+        item.style.width = '100%';
+        if (current === s.id) item.classList.add('active');
+        item.addEventListener('click', ()=>{
+          NexaPatchContext.setSelectedServer(s.id);
+          render();
+        });
+        list.appendChild(item);
+      });
+    }
+    render();
+
+    btn.addEventListener('click', ()=>{
+      window.location.href = 'nexapatch_dashboard.html';
+    });
+  })();
+</script>
+</body>
+</html>

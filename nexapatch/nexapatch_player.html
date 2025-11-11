@@ -1,0 +1,166 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>NexaPatch — Player Dashboard</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="icon" href="assets/favicon.ico">
+  <link rel="stylesheet" href="assets/nexapatch_dashboard.css">
+</head>
+<body>
+<div class="layout">
+  <!-- Sidebar -->
+  <aside class="sidebar">
+    <div class="brand-wrap">
+      <img src="assets/LOGO_NexaPatch.png" alt="NexaPatch logo" class="logo" onerror="this.style.display='none'">
+      <div class="brand-text">
+        <span class="brand-title">NexaPatch</span>
+        <span class="brand-sub">by NexaCore</span>
+      </div>
+    </div>
+
+    <nav class="nav">
+      <a href="nexapatch_player.html" class="nav-link active">
+        <span class="dot"></span> Overview
+      </a>
+      <a href="nexapatch_logs.html" class="nav-link">
+        <span class="dot"></span> Live Logs
+      </a>
+      <a href="nexapatch_players.html" class="nav-link">
+        <span class="dot"></span> Players & Staff
+      </a>
+      <a href="nexapatch_mdt.html" class="nav-link">
+        <span class="dot"></span> MDT
+      </a>
+      <!-- Admin-only pages intentionally omitted here -->
+    </nav>
+
+    <div class="sidebar-footer">
+      <div class="status-pill online"></div>
+      <div class="status-text">
+        <div>NexaPatch Status</div>
+        <small>Operational</small>
+      </div>
+    </div>
+  </aside>
+
+  <!-- Main -->
+  <main class="main">
+    <!-- Top bar -->
+    <header class="topbar">
+      <div>
+        <h1>Player Dashboard</h1>
+        <p class="muted">View live activity, players, and access the MDT.</p>
+      </div>
+      <div class="top-actions">
+        <div class="select-wrap">
+          <label for="server-select">Linked Server</label>
+          <select id="server-select"></select>
+        </div>
+        <a class="btn-primary" href="nexapatch_server_select.html">Change</a>
+      </div>
+    </header>
+
+    <!-- Stats row (read-only) -->
+    <section class="grid stats">
+      <div class="card stat">
+        <div class="stat-label">Live Players</div>
+        <div class="stat-value">24</div>
+        <div class="stat-sub">Updated 15s ago</div>
+      </div>
+      <div class="card stat">
+        <div class="stat-label">On-Duty Staff</div>
+        <div class="stat-value">5</div>
+        <div class="stat-sub">/duty integrated</div>
+      </div>
+      <div class="card stat">
+        <div class="stat-label">API Health</div>
+        <div class="stat-value good">Stable</div>
+        <div class="stat-sub"><span class="pill pill-ok">OK</span> 98ms avg</div>
+      </div>
+    </section>
+
+    <!-- Middle row -->
+    <section class="grid middle">
+      <!-- Live Logs (read-only) -->
+      <div class="card">
+        <div class="card-header">
+          <h2>Live Event Stream</h2>
+          <span class="tag">ER:LC → Discord</span>
+        </div>
+        <div class="logs">
+          <div class="log-item">
+            <span class="log-label arrest">ARREST</span>
+            <span class="log-text">Officer Blake arrested NightFury_23 — 600s reckless driving</span>
+            <span class="log-time">00:12</span>
+          </div>
+          <div class="log-item">
+            <span class="log-label call">911</span>
+            <span class="log-text">New call: Shots fired near Downtown Park — Units assigned</span>
+            <span class="log-time">00:10</span>
+          </div>
+          <div class="log-item">
+            <span class="log-label bolo">BOLO</span>
+            <span class="log-text">BOLO updated: Black Charger — Plate 4NEXA — Last seen Hwy 121</span>
+            <span class="log-time">00:08</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Players snapshot -->
+      <div class="card">
+        <div class="card-header">
+          <h2>Player Snapshot</h2>
+          <span class="tag">Top Activity</span>
+        </div>
+        <table class="table">
+          <thead>
+          <tr>
+            <th>Player</th>
+            <th>Team</th>
+            <th>Session</th>
+            <th>Flags</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr>
+            <td>LC_Officer01</td>
+            <td>LEO</td>
+            <td>42m</td>
+            <td>Clean</td>
+          </tr>
+          <tr>
+            <td>MedicNova</td>
+            <td>FD</td>
+            <td>31m</td>
+            <td>Clean</td>
+          </tr>
+          </tbody>
+        </table>
+        <button class="btn-ghost" disabled title="Admin-only action">View full player list</button>
+      </div>
+    </section>
+  </main>
+</div>
+
+<script src="assets/auth.js"></script>
+<script src="assets/context.js"></script>
+<script src="assets/sidebar_user.js"></script>
+<script>
+  // Save user from incoming query if present
+  try { NexaPatchAuth.saveUserFromQuery(); } catch {}
+  // Non-admin page: allow anyone; but if user is admin, optionally suggest switching
+  (function(){
+    const user = NexaPatchAuth.getUser();
+    if (NexaPatchAuth.isAdmin(user)) {
+      // No hard redirect, but we could hint or auto-redirect if desired
+      console.debug('Admin detected; consider using the Admin Dashboard.');
+    }
+  })();
+  // Require server context and bind select
+  if (window.NexaPatchContext && NexaPatchContext.ensureServerOrRedirect('nexapatch_server_select.html')) {
+    NexaPatchContext.bindSelect(document.getElementById('server-select'));
+  }
+</script>
+</body>
+</html>

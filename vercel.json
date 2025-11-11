@@ -1,4 +1,13 @@
 {
   "cleanUrls": true,
-  "trailingSlash": false
+  "trailingSlash": false,
+  "rewrites": [
+    { "source": "/api/discord-callback-nexapatch", "destination": "/api/discord-callback-nexapatch.js" },
+    { "source": "/api/discord-callback-nexapatch/", "destination": "/api/discord-callback-nexapatch.js" }
+  ],
+  "functions": {
+    "api/*.js": {
+      "runtime": "nodejs18.x"
+    }
+  }
 }
