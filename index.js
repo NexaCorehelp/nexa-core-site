@@ -8,7 +8,7 @@ const app = express();
 app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, 'nexion', 'views'));
 app.use(express.urlencoded({ extended: true }));
-app.use(express.static(path.join(__dirname, 'assets')));
+app.use('/assets', express.static(path.join(__dirname, 'assets')));
 app.use(express.static(__dirname)); // for static HTML at root
 
 // Session and Passport setup for dashboard
