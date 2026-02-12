@@ -1,16 +1,16 @@
 {
-  "version": 2,
-  "cleanUrls": true,
-  "trailingSlash": false,
-  "builds": [
-    { "src": "index.js", "use": "@vercel/node" }
-  ],
-  "routes": [
-    { "src": "/nexion/(.*)", "dest": "index.js" },
-    { "src": "/api/(.*)", "dest": "/api/$1" },
-    { "src": "/(.*)", "dest": "index.js" }
-  ],
-  "functions": {
-    "api/*.js": { "runtime": "nodejs20.x" }
-  }
+	"version": 2,
+	"cleanUrls": true,
+	"trailingSlash": false,
+	"builds": [
+		{ "src": "index.js", "use": "@vercel/node@4.0.0" }
+	],
+	"routes": [
+		{ "src": "/nexion/(.*)", "dest": "index.js" },
+		{ "src": "/api/(.*)", "dest": "/api/$1" },
+		{ "src": "/(.*)", "dest": "index.js" }
+	],
+	"functions": {
+		"api/*.js": { "runtime": "nodejs20.x" }
+	}
 }
