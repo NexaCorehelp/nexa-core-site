@@ -17,7 +17,6 @@ app.use(session({
 app.use(passport.initialize());
 app.use(passport.session());
 
-// Passport config
 passport.serializeUser((user, done) => done(null, user));
 passport.deserializeUser((obj, done) => done(null, obj));
 passport.use(new DiscordStrategy({
@@ -29,18 +28,15 @@ passport.use(new DiscordStrategy({
   process.nextTick(() => done(null, profile));
 }));
 
-// Auth routes
 app.get('/login', passport.authenticate('discord'));
 app.get('/auth/discord/callback', passport.authenticate('discord', { failureRedirect: '/' }), (req, res) => res.redirect('/dashboard'));
 app.get('/logout', (req, res) => { req.logout(() => res.redirect('/')); });
 
-// Middleware to check auth
 function checkAuth(req, res, next) {
   if (req.isAuthenticated()) return next();
   res.redirect('/login');
 }
 
-// Example routes
 app.get('/', (req, res) => res.render('landing', { user: req.user }));
 app.get('/dashboard', checkAuth, (req, res) => res.render('dashboard', { user: req.user, guilds: req.user.guilds || [] }));
 app.get('/dashboard/guild/:id', checkAuth, (req, res) => res.render('guild', { user: req.user, guild: { id: req.params.id, name: 'Example Guild' }, channels: [], activeModule: 'logging', logging_enabled: false, logging_channel: '' }));
