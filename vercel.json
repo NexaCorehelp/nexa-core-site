@@ -9,8 +9,5 @@
 		{ "src": "/nexion/(.*)", "dest": "index.js" },
 		{ "src": "/api/(.*)", "dest": "/api/$1" },
 		{ "src": "/(.*)", "dest": "index.js" }
-	],
-	"functions": {
-		"api/*.js": { "runtime": "nodejs20.x" }
-	}
+	]
 }
