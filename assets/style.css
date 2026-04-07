@@ -1,5 +1,4 @@
-﻿/* Responsive Design */
-@media (max-width: 900px) {
+﻿@media (max-width: 900px) {
   .container, .footer-inner, .team-cards {
     max-width: 98vw;
     padding-left: 10px;
@@ -68,7 +67,6 @@
   box-shadow: 0 8px 32px rgba(74,140,255,0.18);
   transform: translateY(-2px) scale(1.03);
 }
-/* Profile popup styles */
 
 .profile-popup-backdrop[hidden]{
   display: none !important;
@@ -105,7 +103,7 @@
   min-width: 0;
   max-width: none;
 }
-/* Profile card tags */
+
 .profile-tags {
   display: flex;
   gap: 16px;
@@ -142,7 +140,7 @@
   flex-direction: column;
   align-items: center;
 }
-/* Profile Card Styles */
+
 .profile-card {
   background: linear-gradient(135deg, #2d193c 60%, #6c1d2f 100%);
   border-radius: 20px;
@@ -174,7 +172,7 @@
   font-size: 1rem;
   margin-bottom: 0;
 }
-/* Base layout and theme */
+
 :root{
   --brand-start:#8222B6;
   --brand-end:#DD310A;
@@ -196,19 +194,16 @@ body{
   flex-direction:column;
 }
 
-/* Top gradient header band */
 .header-band{
   background: rgba(0,0,0,0.2);
   backdrop-filter: blur(6px);
 }
 
-/* Container */
 .container{
   width: min(1100px, 92%);
   margin: 0 auto;
 }
 
-/* Navbar */
 .nav{
   display:flex; align-items:center; justify-content:space-between;
   padding:14px 0;
@@ -228,7 +223,6 @@ body{
 .nav a.active{outline:2px solid rgba(255,255,255,0.6)}
 .nav a:hover{background: rgba(255,255,255,0.16)}
 
-/* Hero */
 .hero{
   text-align:center; padding:64px 0 48px;
 }
@@ -240,7 +234,6 @@ body{
   backdrop-filter: blur(4px);
 }
 
-/* Sections */
 .section{
   background: rgba(0,0,0,0.25);
   border-top:1px solid #ffffff15;
@@ -259,7 +252,6 @@ body{
 .card h3{margin:0 0 8px}
 .card p{margin:0; color:var(--muted)}
 
-/* Footer */
 footer{
   margin-top:auto;
   background: rgba(0,0,0,0.28);
@@ -273,12 +265,10 @@ footer{
 .footer-links a{color:#fff; text-decoration:none; background:#ffffff12; padding:6px 10px; border-radius:10px}
 .footer-links a:hover{background:#ffffff25}
 
-/* Utility */
 .center{text-align:center}
 .spacer{height:16px}
 .small{font-size:14px; color:#ffffffcc}
 
-/* Forms */
 .form{
   display:grid; gap:12px; max-width:580px; margin:0 auto;
 }
